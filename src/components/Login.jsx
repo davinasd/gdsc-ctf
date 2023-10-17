@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useDispatch } from "react-redux"; // Import useDispatch to dispatch actions
-import { authActions } from "../store/auth-slice"; // Import your authActions
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth-slice";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function Login() {
-  const dispatch = useDispatch(); // Initialize useDispatch
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize useNavigate
   const [formData, setFormData] = useState({
     emailAddress: "",
     password: "",
@@ -22,11 +24,11 @@ function Login() {
       );
 
       if (response.status === 200) {
-        dispatch(authActions.login()); // Dispatch the login action to set isLoggedIn to true
+        dispatch(authActions.login());
+        navigate("/user"); // Navigate to /user on successful login
       } else {
         const errorData = response.data;
         toast.error(errorData.message);
-        dispatch(authActions.logout());
       }
     } catch (error) {
       toast.error("An error occurred during login.");
