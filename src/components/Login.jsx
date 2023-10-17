@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -27,6 +26,7 @@ function Login() {
       } else {
         const errorData = response.data;
         toast.error(errorData.message);
+        dispatch(authActions.logout());
       }
     } catch (error) {
       toast.error("An error occurred during login.");
