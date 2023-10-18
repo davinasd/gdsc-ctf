@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../store/auth-slice";
 import axios from "axios";
 
 const QuestionTable = () => {
+  const dispatch = useDispatch(); // Get the dispatch function
+  const team_id = useSelector((state) => state.auth.team_id); // Get the team_id from the Redux store
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [answer, setAnswer] = useState(""); // New state for the answer  
 
   useEffect(() => {
-    
     axios
       .get(
         "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/getAllQuestions"
@@ -25,6 +29,27 @@ const QuestionTable = () => {
 
   const closeModal = () => {
     setSelectedQuestion(null);
+  };
+
+  const submitAnswer = () => {
+    // Send a POST request to the API with the answer
+    axios
+      .post(
+        "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/addQSolved",
+        {
+          question_id: selectedQuestion.question_id,
+          team_id: team_id, // Retrieve team_id from Redux
+          answer: answer, // Use the answer from the state
+        }
+      )
+      .then((response) => {
+        // Handle the response, e.g., show a success message
+        console.log("Answer submitted successfully");
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error("Error submitting answer: ", error);
+      });
   };
 
   return (
@@ -51,7 +76,7 @@ const QuestionTable = () => {
             >
               Close
             </button>
-            <h2 className="text-xl font-bold mb-4 ">Question Details</h2>
+            <h2 className="text-xl font-bold mb-4">Question Details</h2>
             <p>
               <strong>Question:</strong> {selectedQuestion.question}
             </p>
@@ -66,7 +91,6 @@ const QuestionTable = () => {
                 {selectedQuestion.link}
               </a>
             </p>
-
             <p>
               <strong>Points: </strong>
               {selectedQuestion.points}
@@ -74,6 +98,28 @@ const QuestionTable = () => {
             <p>
               <strong>Hint:</strong> {selectedQuestion.hint}
             </p>
+
+            
+            <div className="mb-4">
+              <label htmlFor="answer" className="block font-bold">
+                Answer:
+              </label>
+              <input
+                type="text"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="border rounded p-2 w-full"
+              />
+            </div>
+
+           
+            <button
+              onClick={submitAnswer}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Submit Answer
+            </button>
           </div>
         </div>
       )}
