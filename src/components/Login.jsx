@@ -13,6 +13,7 @@ function Login() {
     emailAddress: "",
     password: "",
   });
+  const [loginError, setLoginError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,14 +25,13 @@ function Login() {
       );
 
       if (response.status === 200) {
-        dispatch(authActions.login());
+        dispatch(authActions.login({ team_id: response.data.team_id }));
         navigate("/user"); // Navigate to /user on successful login
-      } else {
-        const errorData = response.data;
-        toast.error(errorData.message);
+      } else if (response.status === 400) {
+        setLoginError(response.data.message);
       }
     } catch (error) {
-      toast.error("An error occurred during login.");
+      setLoginError("TEAM LEADER EMAIL OR PASSWORD INVALID");
     }
   };
 
@@ -72,6 +72,9 @@ function Login() {
             Login
           </button>
         </form>
+        {loginError && (
+          <div className="text-red-500 text-center mt-2">{loginError}</div>
+        )}
       </div>
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
