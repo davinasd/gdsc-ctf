@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 import LeaderBoard from "./LeaderBoard";
+import QuestionTable from "./QuestionTable";
 
 function User() {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -28,6 +29,7 @@ return (
         <h2 className="text-2xl font-bold mb-4">
           Hello Team with Team ID {team_id}
         </h2>
+        <QuestionTable></QuestionTable>
       </div>
       <div>
         <LeaderBoard></LeaderBoard>
