@@ -45,10 +45,11 @@ const QuestionTable = () => {
       .then((response) => {
         // Handle the response, e.g., show a success message
         console.log("Answer submitted successfully");
+         setAnswer("");
       })
       .catch((error) => {
-        // Handle any errors
-        console.error("Error submitting answer: ", error);
+       alert(error.response.data.message || "An error occurred");
+        setAnswer("");
       });
   };
 
