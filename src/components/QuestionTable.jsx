@@ -44,7 +44,7 @@ const QuestionTable = () => {
       )
       .then((response) => {
         // Handle the response, e.g., show a success message
-        console.log("Answer submitted successfully");
+        alert("CONGRATULATIONS !!!!! YOUR CANDY IS ACCEPTED .");
          setAnswer("");
       })
       .catch((error) => {
@@ -108,6 +108,7 @@ const QuestionTable = () => {
               <input
                 type="text"
                 id="answer"
+                placeholder="ENTER YOUR CANDY HERE "
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 className="border rounded p-2 w-full"
@@ -119,7 +120,7 @@ const QuestionTable = () => {
               onClick={submitAnswer}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
-              Submit Answer
+              SUBMIT CANDY
             </button>
           </div>
         </div>
