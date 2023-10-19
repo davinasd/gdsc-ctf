@@ -60,7 +60,7 @@ const QuestionTable = () => {
         {questions.map((question, index) => (
           <div
             key={question._id}
-            className="p-4 border rounded-lg cursor-pointer hover:bg-gray-100"
+            className="p-6 border rounded-lg cursor-pointer hover:bg-gray-100" // Adjust the padding here
             onClick={() => openModal(question)}
           >
             <p className="font-bold">Question {index + 1}</p>
@@ -100,7 +100,6 @@ const QuestionTable = () => {
               <strong>Hint:</strong> {selectedQuestion.hint}
             </p>
 
-            
             <div className="mb-4">
               <label htmlFor="answer" className="block font-bold">
                 Answer:
@@ -115,7 +114,6 @@ const QuestionTable = () => {
               />
             </div>
 
-           
             <button
               onClick={submitAnswer}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"

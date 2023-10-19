@@ -27,8 +27,9 @@ return (
       </button>
       <div>
         <h2 className="text-2xl font-bold mb-4">
-          Hello Team with Team ID {team_id}
+          WLCOME TO GDSC CTF !!!!!
         </h2>
+        
         <QuestionTable></QuestionTable>
       </div>
       <div>
