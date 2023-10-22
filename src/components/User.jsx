@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { authActions } from "../store/auth-slice";
 import LeaderBoard from "./LeaderBoard";
 import QuestionTable from "./QuestionTable";
@@ -25,11 +26,14 @@ return (
       >
         Logout
       </button>
+      <Link to="/chart-leaderboard">
+        <button className="p-4 bg-blue-500 text-white rounded ml-4">
+          Chart Leaderboard
+        </button>
+      </Link>
       <div>
-        <h2 className="text-2xl font-bold mb-4">
-          WLCOME TO GDSC CTF !!!!!
-        </h2>
-        
+        <h2 className="text-2xl font-bold mb-4">WLCOME TO GDSC CTF !!!!!</h2>
+
         <QuestionTable></QuestionTable>
       </div>
       <div>
