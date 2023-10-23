@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
+import { setQuestionHints } from "../store/question-slice"; // Import the question-slice action
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const QuestionTable = () => {
-  const dispatch = useDispatch(); // Get the dispatch function
-  const team_id = useSelector((state) => state.auth.team_id); // Get the team_id from the Redux store
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const team_id = useSelector((state) => state.auth.team_id);
+  const questionHints = useSelector((state) => state.question.questionHints);
+
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
-  const [answer, setAnswer] = useState(""); // New state for the answer  
+  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     axios
@@ -16,12 +21,25 @@ const QuestionTable = () => {
         "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/getAllQuestions"
       )
       .then((response) => {
-        setQuestions(response.data);
+        const questions = response.data;
+
+        // Create a dictionary of questionHints
+        const newQuestionHints = {};
+        questions.forEach((question) => {
+          newQuestionHints[question.question_id] = 1;
+        });
+        console.log(newQuestionHints);
+
+        // Dispatch the action to update questionHints in the Redux store
+        dispatch(setQuestionHints(newQuestionHints));
+
+        setQuestions(questions);
       })
+      
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
-  }, []);
+  }, [dispatch]);
 
   const openModal = (question) => {
     setSelectedQuestion(question);
@@ -31,24 +49,26 @@ const QuestionTable = () => {
     setSelectedQuestion(null);
   };
 
+  const redirectToHint = () => {
+    navigate(`/hint/${team_id}/${selectedQuestion.question_id}`);
+  };
+
   const submitAnswer = () => {
-    // Send a POST request to the API with the answer
     axios
       .post(
         "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/addQSolved",
         {
           question_id: selectedQuestion.question_id,
-          team_id: team_id, // Retrieve team_id from Redux
-          answer: answer, // Use the answer from the state
+          team_id: team_id,
+          answer: answer,
         }
       )
       .then((response) => {
-        // Handle the response, e.g., show a success message
-        alert("CONGRATULATIONS !!!!! YOUR CANDY IS ACCEPTED .");
-         setAnswer("");
+        alert("CONGRATULATIONS !!!!! YOUR CANDY IS ACCEPTED.");
+        setAnswer("");
       })
       .catch((error) => {
-       alert(error.response.data.message || "An error occurred");
+        alert(error.response.data.message || "An error occurred");
         setAnswer("");
       });
   };
@@ -60,7 +80,7 @@ const QuestionTable = () => {
         {questions.map((question, index) => (
           <div
             key={question._id}
-            className="p-6 border rounded-lg cursor-pointer hover:bg-gray-100" // Adjust the padding here
+            className="p-6 border rounded-lg cursor-pointer hover:bg-gray-100"
             onClick={() => openModal(question)}
           >
             <p className="font-bold">Question {index + 1}</p>
@@ -82,7 +102,16 @@ const QuestionTable = () => {
               <strong>Question:</strong> {selectedQuestion.question}
             </p>
             <p>
-              <strong>Link: </strong>
+              <strong>Catch Phrase:</strong> {selectedQuestion.catchPhrase}
+            </p>
+            <p>
+              <strong>Description:</strong> {selectedQuestion.description}
+            </p>
+            <p>
+              <strong>TYPE:</strong> {selectedQuestion.type}
+            </p>
+            <p>
+              <strong>Link:</strong>
               <a
                 href={selectedQuestion.link}
                 target="_blank"
@@ -93,11 +122,7 @@ const QuestionTable = () => {
               </a>
             </p>
             <p>
-              <strong>Points: </strong>
-              {selectedQuestion.points}
-            </p>
-            <p>
-              <strong>Hint:</strong> {selectedQuestion.hint}
+              <strong>Points:</strong> {selectedQuestion.points}
             </p>
 
             <div className="mb-4">
@@ -107,7 +132,7 @@ const QuestionTable = () => {
               <input
                 type="text"
                 id="answer"
-                placeholder="ENTER YOUR CANDY HERE "
+                placeholder="ENTER YOUR CANDY HERE"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 className="border rounded p-2 w-full"
@@ -119,6 +144,12 @@ const QuestionTable = () => {
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
               SUBMIT CANDY
+            </button>
+            <button
+              onClick={redirectToHint}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              HINT
             </button>
           </div>
         </div>

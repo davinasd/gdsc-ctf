@@ -48,7 +48,7 @@ function ChartLeaderBoard() {
     const svg = d3.select(chartRef.current);
     svg.selectAll("*").remove(); // Clear existing SVG elements
 
-    const margin = { top: 20, right: 30, bottom: 50, left: 50 };
+    const margin = { top: 20, right: 30, bottom: 50, left: 100 };
     const width = chartRef.current.clientWidth - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
@@ -56,7 +56,7 @@ function ChartLeaderBoard() {
       .scaleBand()
       .domain(leaderboardData.map((team) => team.teamName))
       .range([0, width])
-      .padding(0.1);
+      .padding(0.9);
 
     const yScale = d3
       .scaleLinear()
@@ -84,7 +84,7 @@ function ChartLeaderBoard() {
       .attr("transform", `translate(${margin.left},${margin.top})`)
       .call(yAxis)
       .style("font-size", "12px")
-      .style("fill", "gray");
+      .style("fill", "red");
 
     svg
       .selectAll(".bar")
@@ -104,7 +104,7 @@ function ChartLeaderBoard() {
   };
 
   return (
-    <div className="w-full">
+    <div className="">
       <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
 
       <svg
