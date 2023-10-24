@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authActions } from "../store/auth-slice";
 import LeaderBoard from "./LeaderBoard";
 import QuestionTable from "./QuestionTable";
 
 function User() {
   const [leaderboardData, setLeaderboardData] = useState([]);
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const team_id = useSelector((state) => state.auth.team_id);
 
