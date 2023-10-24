@@ -147,7 +147,7 @@ const QuestionTable = () => {
             </button>
             <button
               onClick={redirectToHint}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-yellow-500 mx-3 text-white px-4 py-2 rounded hover:bg-yellow-700"
             >
               HINT
             </button>

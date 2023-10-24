@@ -7,43 +7,40 @@ import QuestionTable from "./QuestionTable";
 
 function User() {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const dispatch = useDispatch(); 
-  const team_id = useSelector((state) => state.auth.team_id); 
+  const dispatch = useDispatch();
+  const team_id = useSelector((state) => state.auth.team_id);
 
   const handleLogout = () => {
-    
     dispatch(authActions.logout());
-    navigate("/"); 
+    navigate("/");
   };
 
-
-return (
-  <div className="p-4">
-    <div className="flex justify-between items-center">
-      <button
-        onClick={handleLogout}
-        className="p-4 bg-red-500 text-white rounded"
-      >
-        Logout
-      </button>
-      <Link to="/chart-leaderboard">
-        <button className="p-4 bg-blue-500 text-white rounded ml-4">
-          Chart Leaderboard
-        </button>
-      </Link>
-      <div>
-        <h2 className="text-2xl font-bold mb-4">WLCOME TO GDSC CTF !!!!!</h2>
-
-        <QuestionTable></QuestionTable>
+  return (
+    <div className="p-4">
+      <div className="flex justify-between items-center">
+        <div>
+          <button
+            onClick={handleLogout}
+            className="p-4 bg-red-500 text-white rounded"
+          >
+            Logout
+          </button>
+          <Link to="/chart-leaderboard">
+            <button className="p-4 bg-blue-500 text-white rounded ml-4">
+              Chart Leaderboard
+            </button>
+          </Link>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-4">WELCOME TO GDSC CTF !!!!!</h2>
+          <QuestionTable></QuestionTable>
+        </div>
       </div>
-      <div>
+      <div className="ml-auto">
         <LeaderBoard></LeaderBoard>
       </div>
     </div>
-  </div>
-);
-
-
+  );
 }
 
 export default User;
