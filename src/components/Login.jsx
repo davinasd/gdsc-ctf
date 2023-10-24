@@ -31,7 +31,7 @@ function Login() {
         setLoginError(response.data.message);
       }
     } catch (error) {
-      setLoginError("TEAM LEADER EMAIL OR PASSWORD INVALID");
+      setLoginError(error.response.data.message);
     }
   };
 

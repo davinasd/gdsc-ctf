@@ -29,11 +29,13 @@ const Hint = () => {
           default:
             break;
         }
-      } else {
-        setAlertMessage("HINT ALREADY USED BY THIS TEAM");
+      } 
+      if(response.status ===400)
+      {const data = await response.json();
+        setAlertMessage(data.message);
       }
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
