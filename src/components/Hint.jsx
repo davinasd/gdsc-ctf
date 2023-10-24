@@ -14,27 +14,24 @@ function Hint() {
 
   const showHint = () => {
     if (hintNumber <= 3) {
-      // Make the API call to get the hint
+      
       axios
         .get(
           `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/giveHints/${team_id}/${question_id}/${hintNumber}`
         )
         .then((response) => {
           if (response.status === 200) {
-            // If the response is successful and has the clue property
+            
             setHintInfo(response.data.clue);
-            dispatch(incrementHintCount(question_id)); // Increment the hint count in the Redux store
+            dispatch(incrementHintCount(question_id)); 
           } else {
-            // Show the entire response message for non-200 responses
+            
             console.log(response.data.message);
             alert(response.data.message);
           }
         })
         .catch((error) => {
-          
-           alert(error.response.data.message);
-           
-          
+          alert(error.response.data.message);
         });
     } else {
       alert("Maximum hints reached (3)!");

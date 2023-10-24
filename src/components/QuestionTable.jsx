@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
-import { setQuestionHints } from "../store/question-slice"; // Import the question-slice action
+import { setQuestionHints } from "../store/question-slice"; 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const QuestionTable = () => {
         });
         console.log(newQuestionHints);
 
-        // Dispatch the action to update questionHints in the Redux store
+        
         dispatch(setQuestionHints(newQuestionHints));
 
         setQuestions(questions);

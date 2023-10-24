@@ -7,13 +7,13 @@ import QuestionTable from "./QuestionTable";
 
 function User() {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const dispatch = useDispatch(); // Get the dispatch function
-  const team_id = useSelector((state) => state.auth.team_id); // Get the team_id from the Redux store
+  const dispatch = useDispatch(); 
+  const team_id = useSelector((state) => state.auth.team_id); 
 
   const handleLogout = () => {
-    // Dispatch the logout action
+    
     dispatch(authActions.logout());
-    navigate("/"); // Redirect to the login page
+    navigate("/"); 
   };
 
 

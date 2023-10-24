@@ -46,7 +46,7 @@ function ChartLeaderBoard() {
 
   const renderChart = () => {
     const svg = d3.select(chartRef.current);
-    svg.selectAll("*").remove(); // Clear existing SVG elements
+    svg.selectAll("*").remove(); 
 
     const margin = { top: 20, right: 30, bottom: 50, left: 100 };
     const width = chartRef.current.clientWidth - margin.left - margin.right;
@@ -100,7 +100,7 @@ function ChartLeaderBoard() {
       .style("opacity", 0.7)
       .style("transition", "0.3s");
 
-    // Add labels, titles, or other annotations here for a more professional look
+    
   };
 
   return (

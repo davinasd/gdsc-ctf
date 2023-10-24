@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Try to load the login state from local storage
+
 const storedLoginState = JSON.parse(localStorage.getItem("loginState"));
 
 const initialState = storedLoginState || { isLoggedIn: false, team_id: null };
