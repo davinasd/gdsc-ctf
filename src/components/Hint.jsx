@@ -1,77 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { incrementHintCount } from "../store/question-slice";
-import axios from "axios";
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
-function Hint() {
+const Hint = () => {
+  const [hint1, setHint1] = useState("");
+  const [hint2, setHint2] = useState("");
+  const [hint3, setHint3] = useState("");
   const { team_id, question_id } = useParams();
-  let hintNumber = useSelector(
-    (state) => state.question.questionHints[question_id] || 0
-  );
-  const dispatch = useDispatch();
-  const [hintInfo, setHintInfo] = useState(null);
+  const [alertMessage, setAlertMessage] = useState("");
 
-  const showHint = () => {
-    if (hintNumber <= 3) {
-      
-      axios
-        .get(
-          `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/giveHints/${team_id}/${question_id}/${hintNumber}`
-        )
-        .then((response) => {
-          if (response.status === 200) {
-            
-            setHintInfo(response.data.clue);
-            dispatch(incrementHintCount(question_id)); 
-          } else {
-            
-            console.log(response.data.message);
-            alert(response.data.message);
-          }
-        })
-        .catch((error) => {
-          alert(error.response.data.message);
-        });
-    } else {
-      alert("Maximum hints reached (3)!");
+  const fetchHint = async (hintNumber) => {
+    try {
+      const response = await fetch(
+        `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/giveHints/${team_id}/${question_id}/${hintNumber}`
+      );
+
+      if (response.status === 200) {
+        const data = await response.json();
+        switch (hintNumber) {
+          case 1:
+            setHint1(data.message);
+            break;
+          case 2:
+            setHint2(data.message);
+            break;
+          case 3:
+            setHint3(data.message);
+            break;
+          default:
+            break;
+        }
+      } else {
+        setAlertMessage("HINT ALREADY USED BY THIS TEAM");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const buttonStyle =
-    "text-white font-bold bg-blue-500 rounded-full py-2 px-4 hover:bg-blue-700";
-
   return (
-    <div className="container mx-auto mt-10 text-center">
-      <h1 className="text-2xl font-bold mb-4">
-        ****** THIS HINT WILL ONLY BE SHOWN ONCE - PLEASE NOTE IT DOWN ******
-      </h1>
-      {hintNumber <= 3 && (
-        <button
-          onClick={() => dispatch(incrementHintCount(question_id))}
-          className={buttonStyle}
-        >
-          HINT NUMBER {hintNumber}
-        </button>
-      )}
-      {hintInfo ? (
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold">Hint Information</h2>
-          <p className="text-gray-800">{hintInfo}</p>
+    <>
+      <div className="max-w-sm mx-auto p-4 bg-gray-100 rounded shadow-lg">
+        
+        <div className="text-3xl font-bold mb-4">
+          Hints WILL ONLY BE SHOWN ONCE 
         </div>
-      ) : (
-        <div className="mt-6">
-          {hintNumber <= 3 ? (
-            <button onClick={showHint} className={buttonStyle}>
-              SHOW HINT NUMBER {hintNumber}
+        <div className="space-y-4">
+          <div className="bg-gray-200 p-4">
+            <button
+              onClick={() => fetchHint(1)}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Get Hint 1 -5 points
             </button>
-          ) : (
-            <p className="text-red-500 font-bold">Maximum hints reached (3)!</p>
-          )}
+            <div>{hint1}</div>
+          </div>
+          <div className="bg-gray-200 p-4">
+            <button
+              onClick={() => fetchHint(2)}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Get Hint 2 -7 points
+            </button>
+            <div>{hint2}</div>
+          </div>
+          <div className="bg-gray-200 p-4">
+            <button
+              onClick={() => fetchHint(3)}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Get Hint 3 -10 points
+            </button>
+            <div>{hint3}</div>
+          </div>
         </div>
-      )}
-    </div>
+        {alertMessage !== "" && (
+          <div className="fixed px-3 py-7">
+            <div className="bg-red-500 text-white px-4 py-2 rounded">
+              {alertMessage}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="fixed bottom-4 right-4">
+        <Link
+          to="/user"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+          style={{ textDecoration: "none" }}
+        >
+          Back to Home
+        </Link>
+      </div>
+    </>
   );
-}
+};
 
 export default Hint;
