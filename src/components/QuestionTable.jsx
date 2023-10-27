@@ -1,19 +1,56 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector, useDispatch } from "react-redux";
+
 import { authActions } from "../store/auth-slice";
-import { setQuestionHints } from "../store/question-slice"; 
+import { setQuestionHints } from "../store/question-slice";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const QuestionTable = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const team_id = useSelector((state) => state.auth.team_id);
-  const questionHints = useSelector((state) => state.question.questionHints);
 
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [answer, setAnswer] = useState("");
+
+  const [hint1, setHint1] = useState("");
+  const [hint2, setHint2] = useState("");
+  const [hint3, setHint3] = useState("");
+
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const fetchHint = async (hintNumber) => {
+    try {
+      const response = await fetch(
+        `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/giveHints/${team_id}/${selectedQuestion.question_id}/${hintNumber}`
+      );
+
+      if (response.status === 200) {
+        const data = await response.json();
+        switch (hintNumber) {
+          case 1:
+            setHint1(data.message);
+            break;
+          case 2:
+            setHint2(data.message);
+            break;
+          case 3:
+            setHint3(data.message);
+            break;
+          default:
+            break;
+        }
+      }
+      if (response.status === 400) {
+        const data = await response.json();
+        setAlertMessage(data.message);
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -30,12 +67,11 @@ const QuestionTable = () => {
         });
         console.log(newQuestionHints);
 
-        
         dispatch(setQuestionHints(newQuestionHints));
 
         setQuestions(questions);
       })
-      
+
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
@@ -47,10 +83,6 @@ const QuestionTable = () => {
 
   const closeModal = () => {
     setSelectedQuestion(null);
-  };
-
-  const redirectToHint = () => {
-    navigate(`/hint/${team_id}/${selectedQuestion.question_id}`);
   };
 
   const submitAnswer = () => {
@@ -74,83 +106,132 @@ const QuestionTable = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 bg-black text-white">
       <h1 className="text-2xl font-bold mb-4">Question Table</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {questions.map((question, index) => (
           <div
             key={question._id}
-            className="p-6 border rounded-lg cursor-pointer hover:bg-gray-100"
+            className="p-6 border rounded-lg cursor-pointer hover:bg-orange-600 shadow-md"
             onClick={() => openModal(question)}
           >
             <p className="font-bold">Question {index + 1}</p>
+            <h2 className="text-xl font-bold mb-2">{question.question}</h2>
+            <div className="text-orange-500 ">Points: {question.points}</div>
           </div>
         ))}
       </div>
 
       {selectedQuestion && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-8 max-w-md rounded-lg shadow-lg">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-90">
+          <div className="bg-purple-800 p-8  !max-w-4xl max-h-4xl rounded-lg shadow-lg relative">
             <button
-              className="float-right text-gray-500 hover:text-red-500"
+              className="absolute top-2 right-2 pl-10 cursor-pointer text-white font-bold text-xl"
               onClick={closeModal}
             >
-              Close
+              x
             </button>
-            <h2 className="text-xl font-bold mb-4">Question Details</h2>
-            <p>
-              <strong>Question:</strong> {selectedQuestion.question}
-            </p>
-            <p>
-              <strong>Catch Phrase:</strong> {selectedQuestion.catchPhrase}
-            </p>
-            <p>
-              <strong>Description:</strong> {selectedQuestion.description}
-            </p>
-            <p>
-              <strong>TYPE:</strong> {selectedQuestion.type}
-            </p>
-            <p>
-              <strong>Link:</strong>
-              <a
-                href={selectedQuestion.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
-              >
-                {selectedQuestion.link}
-              </a>
-            </p>
-            <p>
-              <strong>Points:</strong> {selectedQuestion.points}
-            </p>
 
-            <div className="mb-4">
-              <label htmlFor="answer" className="block font-bold">
-                Answer:
-              </label>
+            <div className="flex justify-between">
+              <div>
+                <h2 className="text-xl font-bold mb-2">
+                  {selectedQuestion.question}
+                </h2>
+                Tags :
+                <div
+                  className={`bg-orange-500 text-black px-2 py-1 rounded mb-2`}
+                  style={{ width: "auto", display: "inline-block" }}
+                >
+                  {selectedQuestion.type}
+                </div>
+              </div>
+              <div className="text-white-600 text-xl font-bold">
+                Points: {selectedQuestion.points}
+              </div>
+            </div>
+
+            <div className="mb-2 flex pb-10 pt-5">
+              <div
+                className="mb-2 flex flex-col w-1/2"
+                style={{ borderRight: "1px solid #000" }}
+              >
+                <div className="mb-2">
+                  <strong>Catch Phrase:</strong> {selectedQuestion.catchPhrase}
+                </div>
+                <div className="pr-2">
+                  <strong>Description:</strong>
+                  <ReactMarkdown>{selectedQuestion.description}</ReactMarkdown>
+                </div>
+                <strong>Link:</strong>
+                <a
+                  href={selectedQuestion.link}
+                  style={{ textDecoration: "underline", color: "white" }}
+                >
+                  {selectedQuestion.link}
+                </a>
+              </div>
+              <div className="w-1/2" style={{ textAlign: "center" }}>
+                <strong className="text-center text-orange-500 text-2xl">
+                  🎃 Hints 🎃
+                </strong>
+                <div className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg">
+                  <div className="space-y-4">
+                    <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <button
+                        onClick={() => fetchHint(1)}
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                      >
+                        Get Hint 1 -5 points
+                      </button>
+                      <div className="text-orange-500">{hint1}</div>
+                    </div>
+                    <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <button
+                        onClick={() => fetchHint(2)}
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                      >
+                        Get Hint 2 -7 points
+                      </button>
+                      <div className="text-orange-500">{hint2}</div>
+                    </div>
+                    <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <button
+                        onClick={() => fetchHint(3)}
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                      >
+                        Get Hint 3 -10 points
+                      </button>
+                      <div className="text-orange-500">{hint3}</div>
+                    </div>
+                  </div>
+                  {alertMessage !== "" && (
+                    <div className="fixed px-3 py-7">
+                      <div className="bg-red-500 text-white px-4 py-2 rounded">
+                        {alertMessage}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center flex-row mb-4">
               <input
                 type="text"
                 id="answer"
-                placeholder="ENTER YOUR CANDY HERE"
+                placeholder=" Enter Your 🍬 Candy Here"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                className="border rounded p-2 w-full"
+                className="border rounded p-2 w-full mr-2 bg-black text-orange-500"
               />
+              <button
+                onClick={submitAnswer}
+                className="bg-orange-500 text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm "
+              >
+                🍬 Submit Candy 🍬
+              </button>
             </div>
-
-            <button
-              onClick={submitAnswer}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              SUBMIT CANDY
-            </button>
-            <button
-              onClick={redirectToHint}
-              className="bg-yellow-500 mx-3 text-white px-4 py-2 rounded hover:bg-yellow-700"
-            >
-              HINT
-            </button>
           </div>
         </div>
       )}
