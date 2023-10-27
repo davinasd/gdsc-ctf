@@ -86,26 +86,33 @@ const QuestionTable = () => {
   };
 
   const submitAnswer = () => {
-    axios
-      .post(
-        "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/addQSolved",
-        {
-          question_id: selectedQuestion.question_id,
-          team_id: team_id,
-          answer: answer,
-        }
-      )
-      .then((response) => {
-        alert(response.message);
-        closeModal();
-        setAnswer("");
-      })
-      .catch((error) => {
-        alert(error.response.data.message || "An error occurred");
-         closeModal();
-        setAnswer("");
-      });
+    if (!answer) {
+      
+      alert("CAN NOT SUBMIT BLANK ANSWER");
+      closeModal();
+    } else {
+      axios
+        .post(
+          "https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/addQSolved",
+          {
+            question_id: selectedQuestion.question_id,
+            team_id: team_id,
+            answer: answer,
+          }
+        )
+        .then((response) => {
+          alert(response.message);
+          closeModal();
+          setAnswer("");
+        })
+        .catch((error) => {
+          alert(error.response.data.message || "An error occurred");
+          closeModal();
+          setAnswer("");
+        });
+    }
   };
+
 
   return (
     <div className="container mx-auto p-4 bg-black text-white">
