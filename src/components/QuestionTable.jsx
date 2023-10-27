@@ -96,11 +96,13 @@ const QuestionTable = () => {
         }
       )
       .then((response) => {
-        alert("CONGRATULATIONS !!!!! YOUR CANDY IS ACCEPTED.");
+        alert(response.message);
+        closeModal();
         setAnswer("");
       })
       .catch((error) => {
         alert(error.response.data.message || "An error occurred");
+         closeModal();
         setAnswer("");
       });
   };
