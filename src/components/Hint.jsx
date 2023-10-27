@@ -18,20 +18,20 @@ const Hint = () => {
         const data = await response.json();
         switch (hintNumber) {
           case 1:
-            setHint1(data.message);
+            setHint1(data.clue);
             break;
           case 2:
-            setHint2(data.message);
+            setHint2(data.clue);
             break;
           case 3:
-            setHint3(data.message);
+            setHint3(data.clue);
             break;
           default:
             break;
         }
-      } 
-      if(response.status ===400)
-      {const data = await response.json();
+      }
+      if (response.status === 400) {
+        const data = await response.json();
         setAlertMessage(data.message);
       }
     } catch (error) {
@@ -42,9 +42,8 @@ const Hint = () => {
   return (
     <>
       <div className="max-w-sm mx-auto p-4 bg-gray-100 rounded shadow-lg">
-        
         <div className="text-3xl font-bold mb-4">
-          Hints WILL ONLY BE SHOWN ONCE 
+          Hints WILL ONLY BE SHOWN ONCE
         </div>
         <div className="space-y-4">
           <div className="bg-gray-200 p-4">
