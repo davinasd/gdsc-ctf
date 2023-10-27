@@ -45,7 +45,7 @@ const QuestionTable = () => {
       }
       if (response.status === 400) {
         const data = await response.json();
-        setAlertMessage(data.message);
+        alert(data.message);
       }
     } catch (error) {
       alert(error.response.data.message);
@@ -60,12 +60,10 @@ const QuestionTable = () => {
       .then((response) => {
         const questions = response.data;
 
-        
         const newQuestionHints = {};
         questions.forEach((question) => {
           newQuestionHints[question.question_id] = 1;
         });
-        console.log(newQuestionHints);
 
         dispatch(setQuestionHints(newQuestionHints));
 
@@ -83,11 +81,13 @@ const QuestionTable = () => {
 
   const closeModal = () => {
     setSelectedQuestion(null);
+    setHint1("");
+    setHint2("");
+    setHint3("");
   };
 
   const submitAnswer = () => {
     if (!answer) {
-      
       alert("CAN NOT SUBMIT BLANK ANSWER");
       closeModal();
     } else {
@@ -103,16 +103,17 @@ const QuestionTable = () => {
         .then((response) => {
           alert(response.message);
           closeModal();
+
           setAnswer("");
         })
         .catch((error) => {
           alert(error.response.data.message || "An error occurred");
+
           closeModal();
           setAnswer("");
         });
     }
   };
-
 
   return (
     <div className="container mx-auto p-4 bg-black text-white">
@@ -184,6 +185,10 @@ const QuestionTable = () => {
                 <strong className="text-center text-orange-500 text-2xl">
                   🎃 Hints 🎃
                 </strong>
+                <br />
+                <strong className="text-center text-orange-500 text-2xl">
+                  (PUMKINS WILL ONLY BE SHOWN ONCE)
+                </strong>
                 <div className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg">
                   <div className="space-y-4">
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
@@ -191,7 +196,7 @@ const QuestionTable = () => {
                         onClick={() => fetchHint(1)}
                         className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
-                        Get Hint 1 -5 points
+                        🎃 -5 points
                       </button>
                       <div className="text-orange-500">{hint1}</div>
                     </div>
@@ -200,7 +205,7 @@ const QuestionTable = () => {
                         onClick={() => fetchHint(2)}
                         className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
-                        Get Hint 2 -7 points
+                        🎃 🎃 -7 points
                       </button>
                       <div className="text-orange-500">{hint2}</div>
                     </div>
@@ -209,18 +214,11 @@ const QuestionTable = () => {
                         onClick={() => fetchHint(3)}
                         className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
-                        Get Hint 3 -10 points
+                        🎃 🎃 🎃 -10 points
                       </button>
                       <div className="text-orange-500">{hint3}</div>
                     </div>
                   </div>
-                  {alertMessage !== "" && (
-                    <div className="fixed px-3 py-7">
-                      <div className="bg-red-500 text-white px-4 py-2 rounded">
-                        {alertMessage}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
