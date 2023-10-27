@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../store/auth-slice";
 import LeaderBoard from "./LeaderBoard";
 import QuestionTable from "./QuestionTable";
+import Navbar from "./Navbar";
 
 function User() {
-  const [leaderboardData, setLeaderboardData] = useState([]);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const team_id = useSelector((state) => state.auth.team_id);
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -18,28 +16,18 @@ function User() {
   };
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center">
-        <div>
-          <button
-            onClick={handleLogout}
-            className="p-4 bg-red-500 text-white rounded"
-          >
-            Logout
-          </button>
-          <Link to="/chart-leaderboard">
-            <button className="p-4 bg-blue-500 text-white rounded ml-4">
-              Chart Leaderboard
-            </button>
-          </Link>
+    <div>
+      <Navbar onLogout={handleLogout} />
+      <div className="p-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-bold mb-4">WELCOME TO GDSC CTF 🎃</h2>
+            <QuestionTable></QuestionTable>
+          </div>
+          <div className="ml-auto">
+            <LeaderBoard></LeaderBoard>
+          </div>
         </div>
-        <div>
-          <h2 className="text-2xl font-bold mb-4">WELCOME TO GDSC CTF !!!!!</h2>
-          <QuestionTable></QuestionTable>
-        </div>
-      </div>
-      <div className="ml-auto">
-        <LeaderBoard></LeaderBoard>
       </div>
     </div>
   );
