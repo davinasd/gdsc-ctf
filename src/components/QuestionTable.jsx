@@ -31,13 +31,13 @@ const QuestionTable = () => {
         const data = await response.json();
         switch (hintNumber) {
           case 1:
-            setHint1(data.message);
+            setHint1(data.clue);
             break;
           case 2:
-            setHint2(data.message);
+            setHint2(data.clue);
             break;
           case 3:
-            setHint3(data.message);
+            setHint3(data.clue);
             break;
           default:
             break;
@@ -60,7 +60,7 @@ const QuestionTable = () => {
       .then((response) => {
         const questions = response.data;
 
-        // Create a dictionary of questionHints
+        
         const newQuestionHints = {};
         questions.forEach((question) => {
           newQuestionHints[question.question_id] = 1;
