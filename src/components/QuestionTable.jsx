@@ -127,10 +127,10 @@ const QuestionTable = () => {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-90">
           <div className="bg-purple-800 p-8  !max-w-4xl max-h-4xl rounded-lg shadow-lg relative">
             <button
-              className="absolute top-2 right-2 pl-10 text-orange-500 hover:text-red-500 cursor-pointer"
+              className="absolute top-2 right-2 pl-10 cursor-pointer text-white font-bold text-xl"
               onClick={closeModal}
             >
-              &#10006;
+              x
             </button>
 
             <div className="flex justify-between">
@@ -146,7 +146,7 @@ const QuestionTable = () => {
                   {selectedQuestion.type}
                 </div>
               </div>
-              <div className="text-white-600">
+              <div className="text-white-600 text-xl font-bold">
                 Points: {selectedQuestion.points}
               </div>
             </div>
@@ -162,14 +162,14 @@ const QuestionTable = () => {
                 <div className="pr-2">
                   <strong>Description:</strong>
                   <ReactMarkdown>{selectedQuestion.description}</ReactMarkdown>
-                  <strong>Link:</strong>
-                  <a
-                    href={selectedQuestion.link}
-                    style={{ textDecoration: "underline", color: "white" }}
-                  >
-                    {selectedQuestion.link}
-                  </a>
                 </div>
+                <strong>Link:</strong>
+                <a
+                  href={selectedQuestion.link}
+                  style={{ textDecoration: "underline", color: "white" }}
+                >
+                  {selectedQuestion.link}
+                </a>
               </div>
               <div className="w-1/2" style={{ textAlign: "center" }}>
                 <strong className="text-center text-orange-500 text-2xl">
@@ -180,7 +180,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(1)}
-                        className="bg-green-500 text-white px-2 py-2 rounded hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
                         Get Hint 1 -5 points
                       </button>
@@ -189,7 +189,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(2)}
-                        className="bg-green-500 text-white px-2 py-2 rounded hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
                         Get Hint 2 -7 points
                       </button>
@@ -198,7 +198,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(3)}
-                        className="bg-green-500 text-white px-2 py-2 rounded hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
                       >
                         Get Hint 3 -10 points
                       </button>
@@ -227,7 +227,7 @@ const QuestionTable = () => {
               />
               <button
                 onClick={submitAnswer}
-                className="bg-orange-500 text-black w-60 h-18 py-3 rounded hover:bg-orange-700 text-sm "
+                className="bg-orange-500 text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm "
               >
                 🍬 Submit Candy 🍬
               </button>
