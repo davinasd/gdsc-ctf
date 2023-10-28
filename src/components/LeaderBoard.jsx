@@ -40,12 +40,15 @@ function LeaderBoard() {
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
+      <h2 className="text-3xl font-bold mb-7 text-white">Leaderboard</h2>
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
       >
-        <table className="w-full bg-white border rounded-lg overflow-hidden shadow-lg">
-          <thead className="bg-orange-700 text-white">
+        <table className="w-full">
+          <thead
+            style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
+            className="text-black"
+          >
             <tr>
               <th className="px-6 py-3 text-left">Rank</th>
               <th className="px-6 py-3 text-left">Team Name</th>
@@ -57,7 +60,12 @@ function LeaderBoard() {
             {leaderboardData.map((team, index) => (
               <tr
                 key={team._id}
-                className={index % 2 === 0 ? "bg-orange-300" : "bg-white-300"}
+                style={{
+                  backgroundColor:
+                    index % 2 === 0
+                      ? "rgba(255, 255, 255, 0.7)"
+                      : "rgba(255, 165, 0, 0.7)",
+                }}
               >
                 <td className="px-6 py-4 text-center">
                   <span className="font-bold text-black text-lg">
@@ -65,13 +73,19 @@ function LeaderBoard() {
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="font-bold text-black">{team.teamName}</span>
+                  <span className="font-bold text-black ">
+                    {team.teamName}
+                  </span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="font-bold text-black">{team.leaderUsn}</span>
+                  <span className="font-bold text-black ">
+                    {team.leaderUsn}
+                  </span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="font-bold text-black">{team.Score}</span>
+                  <span className="font-bold text-black">
+                    {team.Score}
+                  </span>
                 </td>
               </tr>
             ))}

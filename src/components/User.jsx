@@ -51,14 +51,12 @@ function User() {
       <Navbar onLogout={handleLogout} />
 
       <div className="p-4">
-        <h2 className="text-2xl font-bold mb-4 text-white">
-          ALL CANDYS AVAILABLE HERE 🍬 🍬
-        </h2>
+       
         <div className="flex">
-          <div className="w-85% pr-2">
+          <div className="w-80% pr-2">
             <QuestionTable />
           </div>
-          <div className="w-1/2 ml-5">
+          <div className="w-1/2 mr-0 mt-0">
             <LeaderBoard />
           </div>
         </div>
