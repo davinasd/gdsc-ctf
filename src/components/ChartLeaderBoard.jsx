@@ -118,7 +118,7 @@ function ChartLeaderBoard() {
       <div className="fixed bottom-4 right-4">
         <Link
           to="/user"
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="btn btn-primary hover:bg-red-700"
           style={{ textDecoration: "none" }}
         >
           Back to Home

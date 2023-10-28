@@ -40,7 +40,7 @@ function LeaderBoard() {
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold mb-7 text-white">Leaderboard</h2>
+      <h2 className="text-3xl font-bold mb-4 text-white">Leaderboard</h2>
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
       >
