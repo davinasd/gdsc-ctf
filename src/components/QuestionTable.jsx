@@ -345,11 +345,15 @@ const QuestionTable = () => {
                   (PUMPKINS WILL ONLY BE SHOWN ONCE)
                 </strong>
                 <div className="pt-2 pb-2 mr-3 ml-3  rounded ">
+                   <div
+                  className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg "
+                  style={{ maxHeight: "300px", overflowY: "auto" }}
+                >
                   <div className="space-y-4">
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(1)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-4xl"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
@@ -361,7 +365,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(2)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-4xl"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
@@ -383,6 +387,8 @@ const QuestionTable = () => {
                       <div className="text-orange-500">{hint3}</div>
                     </div>
                   </div>
+                  
+                </div>
                 </div>
               </div>
             </div>
