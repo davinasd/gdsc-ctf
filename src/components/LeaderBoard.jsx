@@ -103,18 +103,44 @@ function LeaderBoard() {
                 }}
               >
                 <td className="px-6 py-4 text-center  border-black">
-                  <span className="font-bold text-black text-4xl">
+                  <span
+                    className="font-bold text-black text-4xl"
+                    style={{
+                      fontFamily: "Creepster",
+                    }}
+                  >
                     {index + 1}
                   </span>
                 </td>
-                <td className="px-6 py-4 border-black">
-                  <span className="font-bold text-black">{team.teamName}</span>
+                <td className="px-6 py-4 border-black text-2xl">
+                  <span
+                    className="font-bold text-black"
+                    style={{
+                      fontFamily: "Creepster",
+                    }}
+                  >
+                    {team.teamName}
+                  </span>
                 </td>
-                <td className="px-6 py-4  border-black">
-                  <span className="font-bold text-black">{team.leaderUsn}</span>
+                <td className="px-6 py-4  border-black text-1xl">
+                  <span
+                    className="font-bold text-black"
+                    style={{
+                      fontFamily: "Creepster",
+                    }}
+                  >
+                    {team.leaderUsn}
+                  </span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className="font-bold text-black">{team.Score}</span>
+                <td className="px-6 py-4 text-2xl">
+                  <span
+                    className="font-bold text-black"
+                    style={{
+                      fontFamily: "Creepster",
+                    }}
+                  >
+                    {team.Score}
+                  </span>
                 </td>
               </tr>
             ))}

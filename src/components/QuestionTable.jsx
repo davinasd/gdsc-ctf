@@ -240,7 +240,14 @@ const QuestionTable = () => {
                 >
                   Points:
                 </div>{" "}
-                {selectedQuestion.points}
+                <div
+                  className="text-3xl"
+                  style={{
+                    fontFamily: "Creepster",
+                  }}
+                >
+                  {selectedQuestion.points}
+                </div>{" "}
               </div>
             </div>
 
