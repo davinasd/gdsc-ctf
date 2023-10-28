@@ -2,3 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
+
+html{
+    background-color: black;
+}

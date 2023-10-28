@@ -39,9 +39,10 @@ function LeaderBoard() {
   }, []);
 
   return (
-    <div className="w-full">
+   <div className="p-4  h-full">
+     <div className="w-full h-fit">
       <h2
-        className="text-5xl font-bold mb-4 text-white "
+        className="text-3xl tracking-wider font-bold mb-4 text-white mt-2"
         style={{
           fontFamily: "Creepster",
         }}
@@ -49,16 +50,16 @@ function LeaderBoard() {
         Spooky ScoreCard
       </h2>
       <div
-        style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
+        style={{maxWidth: "600px", overflowY: "scroll", maxHeight:"80vh" }}
       >
         <table className="w-full border border-black">
           <thead
-            style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
-            className="text-black"
+            // style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
+            className="text-gray-950 bg-orange-500"
           >
             <tr>
               <th
-                className="px-6 py-3 text-left  border-black text-xl"
+                className="px-6 py-3 text-left  border-black text-xl text-gray-950 tracking-wider"
                 style={{
                   fontFamily: "Creepster",
                 }}
@@ -74,7 +75,7 @@ function LeaderBoard() {
                 Team Name
               </th>
               <th
-                className="px-6 py-3 text-left  border-black text-xl"
+                className="px-6 py-3 text-left  border-black text-xl break-normal"
                 style={{
                   fontFamily: "Creepster",
                 }}
@@ -98,8 +99,8 @@ function LeaderBoard() {
                 style={{
                   backgroundColor:
                     index % 2 === 0
-                      ? "rgba(255, 255, 255, 0.7)"
-                      : "rgba(255, 165, 0, 0.7)",
+                      ? "rgba(255, 255, 255)"
+                      : "rgba(255, 165, 0)",
                 }}
               >
                 <td className="px-6 py-4 text-center  border-black">
@@ -148,6 +149,7 @@ function LeaderBoard() {
         </table>
       </div>
     </div>
+   </div>
   );
 }
 

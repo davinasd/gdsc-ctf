@@ -18,7 +18,7 @@ function App() {
       <Route path="/" element={<Registration />} />
       <Route
         path="/user"
-        element={isLoggedIn ? <User /> : <Navigate to="/" />}
+        element={isLoggedIn ? <User /> :<User />}
       />
       <Route
         path="/hint/:team_id/:question_id"
