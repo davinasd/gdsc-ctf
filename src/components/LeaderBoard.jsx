@@ -46,7 +46,7 @@ function LeaderBoard() {
           fontFamily: "Creepster",
         }}
       >
-        Leaderboard
+        Spooky ScoreCard
       </h2>
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
