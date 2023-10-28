@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import * as d3 from "d3"; // Import D3.js
+import * as d3 from "d3"; 
+import { Link } from "react-router-dom";
 
 function ChartLeaderBoard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -114,6 +115,15 @@ function ChartLeaderBoard() {
         ref={chartRef}
         style={{ border: "1px solid #ccc", borderRadius: "5px" }}
       ></svg>
+      <div className="fixed bottom-4 right-4">
+        <Link
+          to="/user"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+          style={{ textDecoration: "none" }}
+        >
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

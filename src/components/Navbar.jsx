@@ -10,7 +10,7 @@ const Navbar = ({ onLogout }) => {
             Chart Leaderboard
           </Link>
         </div>
-        <div className="text-2xl text-white font-bold">
+        <div className="text-5xl text-white font-extrabold">
           WELCOME TO GDSC CTF 🎃
         </div>
         <div>
