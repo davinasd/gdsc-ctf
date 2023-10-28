@@ -8,7 +8,10 @@ const Navbar = ({ onLogout }) => {
         <div>
           <Link
             to="/chart-leaderboard"
-            className="btn btn-primary hover:bg-red-500"
+            className="btn btn-primary hover:bg-red-500 text-3xl"
+            style={{
+              fontFamily: "Creepster",
+            }}
           >
             Chart Leaderboard
           </Link>
@@ -24,7 +27,10 @@ const Navbar = ({ onLogout }) => {
         <div>
           <button
             onClick={onLogout}
-            className="btn btn-primary hover:bg-red-500"
+            className="btn btn-primary hover:bg-red-500 text-2xl"
+            style={{
+              fontFamily: "Creepster",
+            }}
           >
             Logout
           </button>
