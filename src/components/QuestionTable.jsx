@@ -123,12 +123,16 @@ const QuestionTable = () => {
         {questions.map((question, index) => (
           <div
             key={question._id}
-            className="p-6 border rounded-lg cursor-pointer hover:bg-orange-600 shadow-md"
+            className="p-6 border rounded-lg cursor-pointer hover:bg-orange-600 shadow-md bg-white bg-opacity-50
+        text-black
+        p-4
+        text-2xl font-semibold leading-tight
+      "
             onClick={() => openModal(question)}
           >
-            <p className="font-bold">Question {index + 1}</p>
+            <p className="font-bold text-primary-700">Question {index + 1}</p>
             <h2 className="text-xl font-bold mb-2">{question.question}</h2>
-            <div className="text-orange-500 ">Points: {question.points}</div>
+            <div className="text-orange-500">Points: {question.points}</div>
           </div>
         ))}
       </div>

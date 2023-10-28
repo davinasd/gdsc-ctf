@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import bgImg from "../assets/bg-leaderboard.json";
 
 
 function LeaderBoard() {
@@ -41,6 +43,7 @@ function LeaderBoard() {
 
   return (
     <div className="w-1/2">
+     
       <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
       <table className="w-full bg-orange-200 rounded-lg shadow-lg">
         <thead className="bg-orange-500 text-white">
@@ -51,6 +54,18 @@ function LeaderBoard() {
             <th className="px-4 py-2 text-black">Score</th>
           </tr>
         </thead>
+          <Lottie
+        animationData={bgImg}
+        loop={true}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1, 
+        }}
+      />
         <tbody>
           {leaderboardData.map((team, index) => (
             <tr
