@@ -349,7 +349,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(1)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-4xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
@@ -361,7 +361,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(2)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-4xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
@@ -373,7 +373,7 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(3)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-2xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
