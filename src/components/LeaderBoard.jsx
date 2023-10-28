@@ -51,7 +51,7 @@ function LeaderBoard() {
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
       >
-        <table className="w-full border border-black">
+        <table className="w-full border border-black rounded-lg">
           <thead
             style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
             className="text-black"
@@ -102,7 +102,7 @@ function LeaderBoard() {
                       : "rgba(255, 165, 0, 0.7)",
                 }}
               >
-                <td className="px-6 py-4 text-center  border-black">
+                <td className="px-6 py-4 text-center border-black">
                   <span
                     className="font-bold text-black text-4xl"
                     style={{

@@ -5,8 +5,8 @@ import { authActions } from "../store/auth-slice";
 import LeaderBoard from "./LeaderBoard";
 import QuestionTable from "./QuestionTable";
 import Navbar from "./Navbar";
-import bgImg from "../assets/bg-img.json";
-import bgl from "../assets/bg-leaderboard.json";
+import bgImg from "../assets/shreyansh-1.json";
+// import bgl from "../assets/bg-leaderboard.json";
 import moon from "../assets/moon.json";
 import haloweenrope from "../assets/haloweenrope.json";
 
@@ -20,7 +20,6 @@ function User() {
     dispatch(authActions.logout());
     navigate("/");
   };
-
   return (
     <div style={{ position: "relative" }}>
       <Lottie
@@ -35,7 +34,7 @@ function User() {
           zIndex: -1,
         }}
       />
-      <Lottie
+      {/* <Lottie
         animationData={bgl}
         loop={true}
         style={{
@@ -46,7 +45,7 @@ function User() {
           height: "100%",
           zIndex: -1,
         }}
-      />
+      /> */}
 
       <Navbar onLogout={handleLogout} />
 
