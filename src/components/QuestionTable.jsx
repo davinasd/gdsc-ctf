@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector, useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 import { authActions } from "../store/auth-slice";
 import { setQuestionHints } from "../store/question-slice";
@@ -338,7 +338,10 @@ const QuestionTable = () => {
                 >
                   (PUMKINS WILL ONLY BE SHOWN ONCE)
                 </strong>
-                <div className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg">
+                <div
+                  className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg "
+                  style={{ maxHeight: "300px", overflowY: "auto" }}
+                >
                   <div className="space-y-4">
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
@@ -348,9 +351,7 @@ const QuestionTable = () => {
                           fontFamily: "Creepster",
                         }}
                       >
-                       
-                          🎃
-                        
+                        🎃
                         <span>-5 points</span>
                       </button>
                       <div className="text-orange-500 ">{hint1}</div>
@@ -363,11 +364,7 @@ const QuestionTable = () => {
                           fontFamily: "Creepster",
                         }}
                       >
-                      
-                          🎃
-                        
-                          🎃
-                        
+                        🎃 🎃
                         <span>-7 points</span>
                       </button>
                       <div className="text-orange-500">{hint2}</div>
@@ -380,13 +377,7 @@ const QuestionTable = () => {
                           fontFamily: "Creepster",
                         }}
                       >
-                       
-                          🎃
-                       
-                          🎃
-                     
-                          🎃
-                       
+                        🎃 🎃 🎃
                         <span> -10 points</span>
                       </button>
                       <div className="text-orange-500">{hint3}</div>
