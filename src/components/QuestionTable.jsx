@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector, useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
+import {motion} from "framer-motion"
 
 import { authActions } from "../store/auth-slice";
 import { setQuestionHints } from "../store/question-slice";
@@ -295,12 +296,38 @@ const QuestionTable = () => {
               </div>
               <div className="w-1/2" style={{ textAlign: "center" }}>
                 <strong
-                  className="text-center text-orange-500 text-4xl"
+                  className="text-center text-orange-500 text-4xl flex w-full justify-center"
                   style={{
                     fontFamily: "Creepster",
                   }}
                 >
-                  🎃 Hints 🎃
+                  <motion.div
+                    initial={{ y: 0 }}
+                    animate={{
+                      y: [-10, 10, -7, 7, -5, 5, -3, 3, 0],
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                  >
+                    🎃
+                  </motion.div>{" "}
+                  Hints{" "}
+                  <motion.div
+                    initial={{ y: 0 }}
+                    animate={{
+                      y: [-10, 10, -7, 7, -5, 5, -3, 3, 0],
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                  >
+                    🎃
+                  </motion.div>
                 </strong>
                 <br />
                 <strong
@@ -316,36 +343,51 @@ const QuestionTable = () => {
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(1)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center gap-3 text-3xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
                       >
-                        🎃 -5 points
+                       
+                          🎃
+                        
+                        <span>-5 points</span>
                       </button>
-                      <div className="text-orange-500">{hint1}</div>
+                      <div className="text-orange-500 ">{hint1}</div>
                     </div>
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(2)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center gap-3 text-3xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
                       >
-                        🎃 🎃 -7 points
+                      
+                          🎃
+                        
+                          🎃
+                        
+                        <span>-7 points</span>
                       </button>
                       <div className="text-orange-500">{hint2}</div>
                     </div>
                     <div className="bg-purple-800 mr-2 ml-2 p-2">
                       <button
                         onClick={() => fetchHint(3)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700"
+                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center gap-3 text-2xl"
                         style={{
                           fontFamily: "Creepster",
                         }}
                       >
-                        🎃 🎃 🎃 -10 points
+                       
+                          🎃
+                       
+                          🎃
+                     
+                          🎃
+                       
+                        <span> -10 points</span>
                       </button>
                       <div className="text-orange-500">{hint3}</div>
                     </div>
