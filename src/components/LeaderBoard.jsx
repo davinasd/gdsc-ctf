@@ -40,7 +40,14 @@ function LeaderBoard() {
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold mb-4 text-white">Leaderboard</h2>
+      <h2
+        className="text-5xl font-bold mb-4 text-white "
+        style={{
+          fontFamily: "Creepster",
+        }}
+      >
+        Leaderboard
+      </h2>
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
       >
@@ -50,16 +57,38 @@ function LeaderBoard() {
             className="text-black"
           >
             <tr>
-              <th className="px-6 py-3 text-left  border-black">
+              <th
+                className="px-6 py-3 text-left  border-black text-xl"
+                style={{
+                  fontFamily: "Creepster",
+                }}
+              >
                 Rank
               </th>
-              <th className="px-6 py-3 text-left  border-black">
+              <th
+                className="px-6 py-3 text-left  border-black text-xl"
+                style={{
+                  fontFamily: "Creepster",
+                }}
+              >
                 Team Name
               </th>
-              <th className="px-6 py-3 text-left  border-black">
+              <th
+                className="px-6 py-3 text-left  border-black text-xl"
+                style={{
+                  fontFamily: "Creepster",
+                }}
+              >
                 Leader USN
               </th>
-              <th className="px-6 py-3">Score</th>
+              <th
+                className="px-6 py-3 text-xl"
+                style={{
+                  fontFamily: "Creepster",
+                }}
+              >
+                Score
+              </th>
             </tr>
           </thead>
           <tbody>
