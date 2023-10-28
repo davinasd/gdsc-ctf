@@ -162,7 +162,7 @@ const QuestionTable = () => {
         {questions.map((question, index) => (
           <div
             key={question._id}
-            className="p-6 border rounded-lg cursor-pointer hover:bg-orange-600 shadow-md bg-white bg-opacity-60
+            className=" border rounded-lg cursor-pointer hover:bg-orange-600 shadow-md bg-white bg-opacity-60
         text-black
         p-4
         text-2xl font-semibold leading-tight
