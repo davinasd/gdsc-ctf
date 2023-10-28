@@ -44,16 +44,22 @@ function LeaderBoard() {
       <div
         style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
       >
-        <table className="w-full">
+        <table className="w-full border border-black">
           <thead
             style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
             className="text-black"
           >
             <tr>
-              <th className="px-6 py-3 text-left">Rank</th>
-              <th className="px-6 py-3 text-left">Team Name</th>
-              <th className="px-6 py-3 text-left">Leader USN</th>
-              <th className="px-6 py-3 text-left">Score</th>
+              <th className="px-6 py-3 text-left  border-black">
+                Rank
+              </th>
+              <th className="px-6 py-3 text-left  border-black">
+                Team Name
+              </th>
+              <th className="px-6 py-3 text-left  border-black">
+                Leader USN
+              </th>
+              <th className="px-6 py-3">Score</th>
             </tr>
           </thead>
           <tbody>
@@ -67,25 +73,19 @@ function LeaderBoard() {
                       : "rgba(255, 165, 0, 0.7)",
                 }}
               >
-                <td className="px-6 py-4 text-center">
-                  <span className="font-bold text-black text-lg">
+                <td className="px-6 py-4 text-center  border-black">
+                  <span className="font-bold text-black text-4xl">
                     {index + 1}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className="font-bold text-black ">
-                    {team.teamName}
-                  </span>
+                <td className="px-6 py-4 border-black">
+                  <span className="font-bold text-black">{team.teamName}</span>
+                </td>
+                <td className="px-6 py-4  border-black">
+                  <span className="font-bold text-black">{team.leaderUsn}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="font-bold text-black ">
-                    {team.leaderUsn}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <span className="font-bold text-black">
-                    {team.Score}
-                  </span>
+                  <span className="font-bold text-black">{team.Score}</span>
                 </td>
               </tr>
             ))}
