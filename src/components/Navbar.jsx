@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ onLogout }) => {
   return (
-    <div className="bg-orange-500 p-4">
+    <div className="">
       <div className="flex justify-between items-center container mx-auto">
         <div>
           <Link
             to="/chart-leaderboard"
-            className="btn btn-primary hover:bg-red-500 text-3xl"
+            className="btn btn-primary hover:bg-red-500 text-xl tracking-wider font-thin text-white"
             style={{
               fontFamily: "Creepster",
             }}
@@ -17,7 +17,7 @@ const Navbar = ({ onLogout }) => {
           </Link>
         </div>
         <div
-          className="text-8xl text-black font-extrabold"
+          className="text-6xl text-white tracking-wider font-extrabold"
           style={{
             fontFamily: "Creepster",
           }}
@@ -27,7 +27,7 @@ const Navbar = ({ onLogout }) => {
         <div>
           <button
             onClick={onLogout}
-            className="btn btn-primary hover:bg-red-500 text-2xl"
+            className="btn btn-primary hover:bg-red-500 text-xl tracking-wider font-thin text-white"
             style={{
               fontFamily: "Creepster",
             }}

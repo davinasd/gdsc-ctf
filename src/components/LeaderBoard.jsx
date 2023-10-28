@@ -39,113 +39,115 @@ function LeaderBoard() {
   }, []);
 
   return (
-    <div className="w-full">
-      <h2
-        className="text-5xl font-bold mb-4 text-white "
-        style={{
-          fontFamily: "Creepster",
-        }}
-      >
-        Spooky ScoreCard
-      </h2>
-      <div
-        style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
-      >
-        <table className="w-full border border-black">
-          <thead
-            style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
-            className="text-black"
-          >
-            <tr>
-              <th
-                className="px-6 py-3 text-left  border-black text-xl"
-                style={{
-                  fontFamily: "Creepster",
-                }}
-              >
-                Rank
-              </th>
-              <th
-                className="px-6 py-3 text-left  border-black text-xl"
-                style={{
-                  fontFamily: "Creepster",
-                }}
-              >
-                Team Name
-              </th>
-              <th
-                className="px-6 py-3 text-left  border-black text-xl"
-                style={{
-                  fontFamily: "Creepster",
-                }}
-              >
-                Leader USN
-              </th>
-              <th
-                className="px-6 py-3 text-xl"
-                style={{
-                  fontFamily: "Creepster",
-                }}
-              >
-                Score
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboardData.map((team, index) => (
-              <tr
-                key={team._id}
-                style={{
-                  backgroundColor:
-                    index % 2 === 0
-                      ? "rgba(255, 255, 255, 0.7)"
-                      : "rgba(255, 165, 0, 0.7)",
-                }}
-              >
-                <td className="px-6 py-4 text-center  border-black">
-                  <span
-                    className="font-bold text-black text-4xl"
-                    style={{
-                      fontFamily: "Creepster",
-                    }}
-                  >
-                    {index + 1}
-                  </span>
-                </td>
-                <td className="px-6 py-4 border-black text-2xl">
-                  <span
-                    className="font-bold text-black"
-                    style={{
-                      fontFamily: "Creepster",
-                    }}
-                  >
-                    {team.teamName}
-                  </span>
-                </td>
-                <td className="px-6 py-4  border-black text-1xl">
-                  <span
-                    className="font-bold text-black"
-                    style={{
-                      fontFamily: "Creepster",
-                    }}
-                  >
-                    {team.leaderUsn}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-2xl">
-                  <span
-                    className="font-bold text-black"
-                    style={{
-                      fontFamily: "Creepster",
-                    }}
-                  >
-                    {team.Score}
-                  </span>
-                </td>
+    <div className="p-4  h-full">
+      <div className="w-full h-fit">
+        <h2
+          className="text-3xl tracking-wider font-bold mb-4 text-white mt-2"
+          style={{
+            fontFamily: "Creepster",
+          }}
+        >
+          Spooky ScoreCard
+        </h2>
+        <div
+          style={{ maxWidth: "600px", overflowY: "scroll", maxHeight: "80vh" }}
+        >
+          <table className="w-full border border-black">
+            <thead
+              // style={{ backgroundColor: "rgba(255, 80, 0, 0.8)" }}
+              className="text-gray-950 bg-orange-500"
+            >
+              <tr>
+                <th
+                  className="px-6 py-3 text-left  border-black text-xl text-gray-950 tracking-wider"
+                  style={{
+                    fontFamily: "Creepster",
+                  }}
+                >
+                  Rank
+                </th>
+                <th
+                  className="px-6 py-3 text-left  border-black text-xl"
+                  style={{
+                    fontFamily: "Creepster",
+                  }}
+                >
+                  Team Name
+                </th>
+                <th
+                  className="px-6 py-3 text-left  border-black text-xl break-normal"
+                  style={{
+                    fontFamily: "Creepster",
+                  }}
+                >
+                  Leader USN
+                </th>
+                <th
+                  className="px-6 py-3 text-xl"
+                  style={{
+                    fontFamily: "Creepster",
+                  }}
+                >
+                  Score
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {leaderboardData.map((team, index) => (
+                <tr
+                  key={team._id}
+                  style={{
+                    backgroundColor:
+                      index % 2 === 0
+                        ? "rgba(255, 255, 255)"
+                        : "rgba(255, 165, 0)",
+                  }}
+                >
+                  <td className="px-6 py-4 text-center  border-black">
+                    <span
+                      className="font-bold text-black text-4xl"
+                      style={{
+                        fontFamily: "Creepster",
+                      }}
+                    >
+                      {index + 1}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 border-black text-2xl">
+                    <span
+                      className="font-bold text-black"
+                      style={{
+                        fontFamily: "Creepster",
+                      }}
+                    >
+                      {team.teamName}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4  border-black text-1xl">
+                    <span
+                      className="font-bold text-black"
+                      style={{
+                        fontFamily: "Creepster",
+                      }}
+                    >
+                      {team.leaderUsn}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-2xl">
+                    <span
+                      className="font-bold text-black"
+                      style={{
+                        fontFamily: "Creepster",
+                      }}
+                    >
+                      {team.Score}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
