@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Lottie from "lottie-react";
-import bgImg from "../assets/bg-leaderboard.json";
-
 
 function LeaderBoard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -42,52 +39,45 @@ function LeaderBoard() {
   }, []);
 
   return (
-    <div className="w-1/2">
-     
+    <div className="w-full">
       <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
-      <table className="w-full bg-orange-200 rounded-lg shadow-lg">
-        <thead className="bg-orange-500 text-white">
-          <tr>
-            <th className="px-4 py-2 text-black">Rank</th>
-            <th className="px-4 py-2 text-black">Team Name</th>
-            <th className="px-4 py-2 text-black">Leader USN</th>
-            <th className="px-4 py-2 text-black">Score</th>
-          </tr>
-        </thead>
-          <Lottie
-        animationData={bgImg}
-        loop={true}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: -1, 
-        }}
-      />
-        <tbody>
-          {leaderboardData.map((team, index) => (
-            <tr
-              key={team._id}
-              className={index % 2 === 0 ? "bg-white" : "bg-orange-300"}
-            >
-              <td className="px-4 py-2">
-                <strong className="text-black">{index + 1}</strong>
-              </td>
-              <td className="px-4 py-2">
-                <strong className="text-black">{team.teamName}</strong>
-              </td>
-              <td className="px-4 py-2">
-                <strong className="text-black">{team.leaderUsn}</strong>
-              </td>
-              <td className="px-4 py-2">
-                <strong className="text-black">{team.Score}</strong>
-              </td>
+      <div
+        style={{ maxHeight: "600px", maxWidth: "500px", overflowY: "scroll" }}
+      >
+        <table className="w-full bg-white border rounded-lg overflow-hidden shadow-lg">
+          <thead className="bg-orange-700 text-white">
+            <tr>
+              <th className="px-6 py-3 text-left">Rank</th>
+              <th className="px-6 py-3 text-left">Team Name</th>
+              <th className="px-6 py-3 text-left">Leader USN</th>
+              <th className="px-6 py-3 text-left">Score</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {leaderboardData.map((team, index) => (
+              <tr
+                key={team._id}
+                className={index % 2 === 0 ? "bg-orange-300" : "bg-white-300"}
+              >
+                <td className="px-6 py-4 text-center">
+                  <span className="font-bold text-black text-lg">
+                    {index + 1}
+                  </span>
+                </td>
+                <td className="px-6 py-4">
+                  <span className="font-bold text-black">{team.teamName}</span>
+                </td>
+                <td className="px-6 py-4">
+                  <span className="font-bold text-black">{team.leaderUsn}</span>
+                </td>
+                <td className="px-6 py-4">
+                  <span className="font-bold text-black">{team.Score}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
