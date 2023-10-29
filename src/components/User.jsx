@@ -22,7 +22,7 @@ function User() {
   };
 
   return (
-    <div className="w-full h-[120vh] bg-black">
+    <div className="w-full h-auto bg-black">
       <Lottie
         className="overflow-hidden"
         animationData={bgImg}
@@ -35,16 +35,17 @@ function User() {
           height: "100%",
           zIndex: 15,
           backgroundColor: "black",
+          opacity: 0.5
         }}
       />
       <div style={{ position: "relative" }}>
         <div className="p-4 absolute z-20 w-full min-h-screen ">
           <Navbar onLogout={handleLogout} />
           <div className="flex p-4  max-h-screen">
-            <div className="w-[50%] pr-2">
+            <div className="w-[60%] pr-2">
               <QuestionTable />
             </div>
-            <div className="w-[50%] mr-0 mt-0">
+            <div className="w-[40%] mr-0 mt-0">
               <LeaderBoard />
             </div>
           </div>

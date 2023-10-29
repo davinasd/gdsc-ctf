@@ -4,6 +4,12 @@ function LeaderBoard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
+    leaderboardData.sort((a, b) => {
+      return b.Score - a.Score;
+    });
+  }, [leaderboardData]);
+
+  useEffect(() => {
     const socket = new WebSocket(
       "wss://wk9rah0v20.execute-api.ap-south-1.amazonaws.com/prod"
     );
@@ -21,7 +27,9 @@ function LeaderBoard() {
           const newTeams = message.newTeam.filter(
             (newTeam) => !existingTeamIds.includes(newTeam._id)
           );
-          return [...prevData, ...newTeams];
+          return [...prevData, ...newTeams].sort((a, b) => {
+            return b.Score - a.Score;
+          });
         });
       } else if (message.result) {
         setLeaderboardData((prevData) => {
@@ -40,7 +48,7 @@ function LeaderBoard() {
 
   return (
     <div className="p-4  h-full">
-      <div className="w-full h-fit">
+      <div className="w-full h-fit no-scrollbar">
         <h2
           className="text-3xl tracking-wider font-bold mb-4 text-white mt-2"
           style={{
@@ -50,7 +58,8 @@ function LeaderBoard() {
           Spooky ScoreCard
         </h2>
         <div
-          style={{ maxWidth: "600px", overflowY: "scroll", maxHeight: "80vh" }}
+          style={{ maxWidth: "600px", overflowY: "scroll", maxHeight: "70vh"}}
+          className="no-scrollbar"
         >
           <table className="w-full border border-black">
             <thead
@@ -59,7 +68,7 @@ function LeaderBoard() {
             >
               <tr>
                 <th
-                  className="px-6 py-3 text-left  border-black text-xl text-gray-950 tracking-wider"
+                  className="px-4 py-3.5 text-left  border-black text-l text-gray-950 tracking-wider"
                   style={{
                     fontFamily: "Creepster",
                   }}
@@ -67,7 +76,7 @@ function LeaderBoard() {
                   Rank
                 </th>
                 <th
-                  className="px-6 py-3 text-left  border-black text-xl"
+                  className="px-4 py-3.5 text-left  border-black text-l"
                   style={{
                     fontFamily: "Creepster",
                   }}
@@ -75,7 +84,7 @@ function LeaderBoard() {
                   Team Name
                 </th>
                 <th
-                  className="px-6 py-3 text-left  border-black text-xl break-normal"
+                  className="px-4 py-3.5 text-left  border-black text-l break-normal"
                   style={{
                     fontFamily: "Creepster",
                   }}
@@ -83,7 +92,7 @@ function LeaderBoard() {
                   Leader USN
                 </th>
                 <th
-                  className="px-6 py-3 text-xl"
+                  className="px-4 py-3.5 text-l"
                   style={{
                     fontFamily: "Creepster",
                   }}
@@ -93,7 +102,7 @@ function LeaderBoard() {
               </tr>
             </thead>
             <tbody>
-              {leaderboardData.map((team, index) => (
+              {leaderboardData.slice(0, 10).map((team, index) => (
                 <tr
                   key={team._id}
                   style={{
@@ -103,7 +112,7 @@ function LeaderBoard() {
                         : "rgba(255, 165, 0)",
                   }}
                 >
-                  <td className="px-6 py-4 text-center  border-black">
+                  <td className="px-4 py-3.5 text-center  border-black">
                     <span
                       className="font-bold text-black text-4xl"
                       style={{
@@ -113,7 +122,7 @@ function LeaderBoard() {
                       {index + 1}
                     </span>
                   </td>
-                  <td className="px-6 py-4 border-black text-2xl">
+                  <td className="px-4 py-3.5 border-black text-2xl">
                     <span
                       className="font-bold text-black"
                       style={{
@@ -123,7 +132,7 @@ function LeaderBoard() {
                       {team.teamName}
                     </span>
                   </td>
-                  <td className="px-6 py-4  border-black text-1xl">
+                  <td className="px-4 py-3.5  border-black text-1xl">
                     <span
                       className="font-bold text-black"
                       style={{
@@ -133,7 +142,7 @@ function LeaderBoard() {
                       {team.leaderUsn}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-2xl">
+                  <td className="px-4 py-3.5 text-2xl">
                     <span
                       className="font-bold text-black"
                       style={{

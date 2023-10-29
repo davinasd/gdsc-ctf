@@ -19,9 +19,9 @@ const QuestionCard = ({ question, index, func: openModal }) => {
         setIsHovered(false);
       }}
       key={question._id}
-      className="p-4  border rounded-lg cursor-pointer  hover:bg-orange-500 shadow-md bg-gray-950
+      className="p-4  border rounded-lg cursor-pointer w-1/3 hover:bg-orange-500 shadow-md bg-gray-950
 text-black
-text-2xl font-semibold leading-tight w-fit  relative bg-opacity-70
+text-2xl font-semibold leading-tight relative bg-opacity-40
 "
       onClick={() => openModal(question)}
     >
@@ -228,8 +228,14 @@ const QuestionTable = () => {
       </div>
 
       {selectedQuestion && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black p-4 bg-opacity-90 z-50">
-          <div className="bg-purple-800 py-2 px-4 rounded-lg shadow-lg relative">
+        <div
+          className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black p-4 bg-opacity-90 z-30"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-purple-800 py-2 w-3/4 px-4 rounded-lg shadow-lg relative z-50"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="absolute top-0 right-2 pl-10 cursor-pointer text-white font-bold text-xl m-2"
               onClick={closeModal}
@@ -345,50 +351,49 @@ const QuestionTable = () => {
                   (PUMPKINS WILL ONLY BE SHOWN ONCE)
                 </strong>
                 <div className="pt-2 pb-2 mr-3 ml-3  rounded ">
-                   <div
-                  className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg "
-                  style={{ maxHeight: "300px", overflowY: "auto" }}
-                >
-                  <div className="space-y-4">
-                    <div className="bg-purple-800 mr-2 ml-2 p-2">
-                      <button
-                        onClick={() => fetchHint(1)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
-                        style={{
-                          fontFamily: "Creepster",
-                        }}
-                      >
-                        🎃 -5 points
-                      </button>
-                      <div className="text-orange-500">{hint1}</div>
-                    </div>
-                    <div className="bg-purple-800 mr-2 ml-2 p-2">
-                      <button
-                        onClick={() => fetchHint(2)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
-                        style={{
-                          fontFamily: "Creepster",
-                        }}
-                      >
-                        🎃 🎃 -7 points
-                      </button>
-                      <div className="text-orange-500">{hint2}</div>
-                    </div>
-                    <div className="bg-purple-800 mr-2 ml-2 p-2">
-                      <button
-                        onClick={() => fetchHint(3)}
-                        className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-2xl"
-                        style={{
-                          fontFamily: "Creepster",
-                        }}
-                      >
-                        🎃 🎃 🎃 -10 points
-                      </button>
-                      <div className="text-orange-500">{hint3}</div>
+                  <div
+                    className="pt-2 pb-2 mr-3 ml-3 bg-black rounded shadow-lg "
+                    style={{ maxHeight: "300px", overflowY: "auto" }}
+                  >
+                    <div className="space-y-4">
+                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                        <button
+                          onClick={() => fetchHint(1)}
+                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
+                          style={{
+                            fontFamily: "Creepster",
+                          }}
+                        >
+                          🎃 -5 points
+                        </button>
+                        <div className="text-orange-500">{hint1}</div>
+                      </div>
+                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                        <button
+                          onClick={() => fetchHint(2)}
+                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
+                          style={{
+                            fontFamily: "Creepster",
+                          }}
+                        >
+                          🎃 🎃 -7 points
+                        </button>
+                        <div className="text-orange-500">{hint2}</div>
+                      </div>
+                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                        <button
+                          onClick={() => fetchHint(3)}
+                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-2xl"
+                          style={{
+                            fontFamily: "Creepster",
+                          }}
+                        >
+                          🎃 🎃 🎃 -10 points
+                        </button>
+                        <div className="text-orange-500">{hint3}</div>
+                      </div>
                     </div>
                   </div>
-                  
-                </div>
                 </div>
               </div>
             </div>
