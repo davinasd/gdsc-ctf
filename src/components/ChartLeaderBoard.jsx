@@ -1,10 +1,35 @@
 import React, { useEffect, useState, useRef } from "react";
-import * as d3 from "d3"; 
+import * as d3 from "d3";
 import { Link } from "react-router-dom";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function ChartLeaderBoard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
   const chartRef = useRef(null);
+
+  useEffect(() => {
+    leaderboardData.sort((a, b) => {
+      return b.Score - a.Score;
+    });
+  }, [leaderboardData]);
 
   useEffect(() => {
     const socket = new WebSocket(
@@ -24,7 +49,9 @@ function ChartLeaderBoard() {
           const newTeams = message.newTeam.filter(
             (newTeam) => !existingTeamIds.includes(newTeam._id)
           );
-          return [...prevData, ...newTeams];
+          return [...prevData, ...newTeams].sort((a, b) => {
+            return b.Score - a.Score;
+          });
         });
       } else if (message.result) {
         setLeaderboardData((prevData) => {
@@ -41,80 +68,78 @@ function ChartLeaderBoard() {
     };
   }, []);
 
-  useEffect(() => {
-    renderChart();
-  }, [leaderboardData]);
+  // ChartJs Configurations
+  const options = {
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            position: 'bottom'
+          }
+        }
+      }
+  },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
-  const renderChart = () => {
-    const svg = d3.select(chartRef.current);
-    svg.selectAll("*").remove(); 
-
-    const margin = { top: 20, right: 30, bottom: 50, left: 100 };
-    const width = chartRef.current.clientWidth - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
-
-    const xScale = d3
-      .scaleBand()
-      .domain(leaderboardData.map((team) => team.teamName))
-      .range([0, width])
-      .padding(0.9);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(leaderboardData, (team) => team.Score)])
-      .nice()
-      .range([height, 0]);
-
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
-
-    svg
-      .append("g")
-      .attr("transform", `translate(${margin.left},${height + margin.top})`)
-      .call(xAxis)
-      .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", "rotate(-45")
-      .style("font-size", "12px")
-      .style("fill", "gray");
-
-    svg
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`)
-      .call(yAxis)
-      .style("font-size", "12px")
-      .style("fill", "red");
-
-    svg
-      .selectAll(".bar")
-      .data(leaderboardData)
-      .enter()
-      .append("rect")
-      .attr("class", "bar")
-      .attr("x", (d) => xScale(d.teamName) + margin.left)
-      .attr("y", (d) => yScale(d.Score) + margin.top)
-      .attr("width", xScale.bandwidth())
-      .attr("height", (d) => height - yScale(d.Score))
-      .attr("fill", "steelblue")
-      .style("opacity", 0.7)
-      .style("transition", "0.3s");
-
-    
+  const data = {
+    labels: leaderboardData
+      .slice(0, 10)
+      .sort(function (a, b) {
+        return a.teamName.localeCompare(b.teamName);
+      })
+      .map((team) => team.teamName),
+    datasets: [
+      {
+        label: "Score",
+        data: leaderboardData
+          .slice(0, 10)
+          .sort(function (a, b) {
+            return a.teamName.localeCompare(b.teamName);
+          })
+          .map((team) => team.Score),
+        backgroundColor: [
+          "rgba(84, 71, 140, 0.2)",
+          "rgba(44, 105, 154, 0.2)",
+          "rgba(4, 139, 168, 0.2)",
+          "rgba(13, 179, 158, 0.2)",
+          "rgba(22, 219, 147, 0.2)",
+          "rgba(131, 227, 119, 0.2)",
+          "rgba(185, 231, 105, 0.2)",
+          "rgba(239, 234, 90, 0.2)",
+          "rgba(241, 196, 83, 0.2)",
+          "rgba(242, 158, 76, 0.2)",
+        ],
+        borderColor: [
+          "rgb(84, 71, 140)",
+          "rgb(44, 105, 154)",
+          "rgb(4, 139, 168)",
+          "rgb(13, 179, 158)",
+          "rgb(22, 219, 147)",
+          "rgb(131, 227, 119)",
+          "rgb(185, 231, 105)",
+          "rgb(239, 234, 90)",
+          "rgb(241, 196, 83)",
+          "rgb(242, 158, 76)",
+        ],
+        borderWidth: 1,
+      },
+    ],
   };
 
   return (
-    <div className="">
-      <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
+    <div className="grid justify-items-center items-center h-screen">
 
-      <svg
-        id="leaderboardChart"
-        width="100%"
-        height="300"
-        ref={chartRef}
-        style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-      ></svg>
+        <h2 className="text-2xl font-bold mb-4">Leaderboard</h2>
+        <div className="w-1/2">
+        <Bar options={options} data={data} />;
+
+        </div>
+
       <div className="fixed bottom-4 right-4">
         <Link
           to="/user"
