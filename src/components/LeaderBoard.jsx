@@ -1,12 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 function LeaderBoard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
+  const [fetchedLeaderUsn, setFetchedLeaderUsn] = useState(null);
 
+  const team_id = useSelector((state) => state.auth.team_id);
+  const fetchTeamScore = async () => {
+    try {
+      const response = await axios.get(
+        `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/getTeamById/${team_id}`
+      );
+      setFetchedLeaderUsn(response.data[0].leaderUsn); // Assuming response.data contains the leaderUsn
+
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     leaderboardData.sort((a, b) => {
       return b.Score - a.Score;
     });
+    fetchTeamScore();
+
   }, [leaderboardData]);
 
   useEffect(() => {
@@ -103,15 +122,15 @@ function LeaderBoard() {
             </thead>
             <tbody>
               {leaderboardData.slice(0, 10).map((team, index) => (
-                <tr
-                  key={team._id}
-                  style={{
-                    backgroundColor:
-                      index % 2 === 0
-                        ? "rgba(255, 255, 255)"
-                        : "rgba(255, 165, 0)",
-                  }}
-                >
+               <tr
+               key={team._id}
+               style={{
+
+                     backgroundColor: fetchedLeaderUsn === team.leaderUsn ? "red" :index % 2 === 0
+                     ? "rgba(255, 255, 255)"
+                     : "rgba(255, 165, 0)",
+                    }}
+             >
                   <td className="px-4 py-3.5 text-center  border-black">
                     <span
                       className="font-bold text-black text-4xl"
