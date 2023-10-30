@@ -1,11 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 const Navbar = ({ onLogout }) => {
+  const team_id = useSelector((state) => state.auth.team_id);
 
   const [teamScore, setTeamScore] = useState(0);
+  useEffect(() => {
+    const fetchTeamScore = async () => {
+      try {
+        const response = await axios.get(
+          `https://bci0y87s7k.execute-api.ap-south-1.amazonaws.com/api/admin/getTeamById/${team_id}`
+        );
 
+        const teamScore = response.data[0].Score;
+        setTeamScore(teamScore);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTeamScore();
+  }, []);
   return (
     <div className="">
       <div className="flex w-full justify-between items-center container mx-auto">
