@@ -19,7 +19,7 @@ const QuestionCard = ({ question, index, func: openModal }) => {
         setIsHovered(false);
       }}
       key={question._id}
-      className="p-4  border rounded-lg cursor-pointer w-1/3 hover:bg-orange-500 shadow-md bg-gray-950
+      className="p-4  border rounded-lg cursor-pointer w-1/3 hover:bg-primary shadow-md bg-gray-950
 text-black
 text-2xl font-semibold leading-tight relative bg-opacity-40
 "
@@ -43,7 +43,7 @@ text-2xl font-semibold leading-tight relative bg-opacity-40
       <p
         className="font-bold text-primary-700 text-2xl flex gap-3 text-white tracking-widest"
         style={{
-          fontFamily: "Creepster",
+          fontFamily: "montserrat",
         }}
       >
         Question <span>{index + 1}</span>
@@ -51,7 +51,7 @@ text-2xl font-semibold leading-tight relative bg-opacity-40
       <h2
         className="text-xl font-bold mb-2 text-white tracking-wider"
         style={{
-          fontFamily: "Creepster",
+          fontFamily: "montserrat",
         }}
       >
         {question.question}
@@ -59,7 +59,7 @@ text-2xl font-semibold leading-tight relative bg-opacity-40
       <div
         className="text-purple-700 bg-white py-2 px-3 rounded-full w-fit text-lg tracking-wider border border-white backdrop-blur-lg  bg-white/10 "
         style={{
-          fontFamily: "Creepster",
+          fontFamily: "montserrat",
         }}
       >
         Points: {question.points}
@@ -108,7 +108,7 @@ const QuestionTable = () => {
         toast.error(data.message, {
           className: "text-white bg-black",
           style: {
-            fontFamily: "Creepster",
+            fontFamily: "montserrat",
           },
         });
       }
@@ -116,7 +116,7 @@ const QuestionTable = () => {
       toast.error(error.response.data.message, {
         className: "text-white bg-black",
         style: {
-          fontFamily: "Creepster",
+          fontFamily: "montserrat",
         },
       });
     }
@@ -164,7 +164,7 @@ const QuestionTable = () => {
         {
           className: "text-white bg-black",
           style: {
-            fontFamily: "Creepster",
+            fontFamily: "montserrat",
           },
         }
       );
@@ -183,7 +183,7 @@ const QuestionTable = () => {
           toast(response.message, {
             className: "text-white bg-black",
             style: {
-              fontFamily: "Creepster",
+              fontFamily: "montserrat",
             },
           });
           closeModal();
@@ -194,7 +194,7 @@ const QuestionTable = () => {
           toast.error(error.response.data.message || "An error occurred", {
             className: "text-white bg-black",
             style: {
-              fontFamily: "Creepster",
+              fontFamily: "montserrat",
             },
           });
 
@@ -210,7 +210,7 @@ const QuestionTable = () => {
       <h1
         className="text-4xl font-bold mb-4 text-white  tracking-wider"
         style={{
-          fontFamily: "Creepster",
+          fontFamily: "montserrat",
         }}
       >
         Quests
@@ -233,7 +233,7 @@ const QuestionTable = () => {
           onClick={closeModal}
         >
           <div
-            className="bg-purple-800 py-2 w-3/4 px-4 rounded-lg shadow-lg relative z-50"
+            className="bg-secondary py-2 w-3/4 px-4 rounded-lg shadow-lg relative z-50"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -248,7 +248,7 @@ const QuestionTable = () => {
                 <h2
                   className="text-3xl font-bold mb-2 tracking-wider"
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   {selectedQuestion.question}
@@ -257,13 +257,13 @@ const QuestionTable = () => {
                   <div
                     className="text-3xl"
                     style={{
-                      fontFamily: "Creepster",
+                      fontFamily: "montserrat",
                     }}
                   >
                     Tag :
                   </div>
                   <div
-                    className={`bg-orange-500 px-2 border text-sm border-white py-1 text-white rounded-full `}
+                    className={`bg-primary px-2 border text-sm border-white py-1 text-white rounded-full `}
                     style={{ width: "auto", display: "inline-block" }}
                   >
                     {selectedQuestion.type}
@@ -274,7 +274,7 @@ const QuestionTable = () => {
                 <div
                   className="text-3xl "
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   Points:
@@ -282,7 +282,7 @@ const QuestionTable = () => {
                 <div
                   className="text-3xl"
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   {selectedQuestion.points}
@@ -299,7 +299,7 @@ const QuestionTable = () => {
                   <div
                     className="text-3xl"
                     style={{
-                      fontFamily: "Creepster",
+                      fontFamily: "montserrat",
                     }}
                   >
                     CATCH PHRASE :
@@ -310,7 +310,7 @@ const QuestionTable = () => {
                   <div
                     className="text-3xl"
                     style={{
-                      fontFamily: "Creepster",
+                      fontFamily: "montserrat",
                     }}
                   >
                     DESCRIPTION :
@@ -320,7 +320,7 @@ const QuestionTable = () => {
                 <div
                   className="text-3xl"
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   LINK :
@@ -334,18 +334,18 @@ const QuestionTable = () => {
               </div>
               <div className="w-1/2 mx-4" style={{ textAlign: "center" }}>
                 <div
-                  className="text-center text-orange-500 text-4xl"
+                  className="text-center text-primary text-4xl"
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   🎃 Hints 🎃
                 </div>
                 <br />
                 <strong
-                  className="text-center text-orange-500 text-4xl"
+                  className="text-center text-primary text-4xl"
                   style={{
-                    fontFamily: "Creepster",
+                    fontFamily: "montserrat",
                   }}
                 >
                   (PUMPKINS WILL ONLY BE SHOWN ONCE)
@@ -356,41 +356,41 @@ const QuestionTable = () => {
                     style={{ maxHeight: "300px", overflowY: "auto" }}
                   >
                     <div className="space-y-4">
-                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <div className="bg-secondary mr-2 ml-2 p-2">
                         <button
                           onClick={() => fetchHint(1)}
-                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
+                          className="btn"
                           style={{
-                            fontFamily: "Creepster",
+                            fontFamily: "montserrat",
                           }}
                         >
                           🎃 -5 points
                         </button>
-                        <div className="text-orange-500">{hint1}</div>
+                        <div className="text-primary">{hint1}</div>
                       </div>
-                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <div className="bg-secondary mr-2 ml-2 p-2">
                         <button
                           onClick={() => fetchHint(2)}
-                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-3xl"
+                          className="btn"
                           style={{
-                            fontFamily: "Creepster",
+                            fontFamily: "montserrat",
                           }}
                         >
                           🎃 🎃 -7 points
                         </button>
-                        <div className="text-orange-500">{hint2}</div>
+                        <div className="text-primary">{hint2}</div>
                       </div>
-                      <div className="bg-purple-800 mr-2 ml-2 p-2">
+                      <div className="bg-secondary mr-2 ml-2 p-2">
                         <button
                           onClick={() => fetchHint(3)}
-                          className="bg-green-500 text-white px-2 py-2 rounded-full hover:bg-green-700 flex w-full justify-center border border-white text-2xl"
+                          className="btn"
                           style={{
-                            fontFamily: "Creepster",
+                            fontFamily: "montserrat",
                           }}
                         >
                           🎃 🎃 🎃 -10 points
                         </button>
-                        <div className="text-orange-500">{hint3}</div>
+                        <div className="text-primary">{hint3}</div>
                       </div>
                     </div>
                   </div>
@@ -401,7 +401,7 @@ const QuestionTable = () => {
             <div
               className="flex items-center flex-row mb-4"
               style={{
-                fontFamily: "Creepster",
+                fontFamily: "montserrat",
               }}
             >
               <input
@@ -410,13 +410,13 @@ const QuestionTable = () => {
                 placeholder=" Enter Your 🍬 Candy Here"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                className="border rounded p-2 w-full mr-2 bg-black text-orange-500"
+                className="border rounded p-2 w-full mr-2 bg-black text-primary"
               />
               <button
                 onClick={submitAnswer}
-                className="bg-orange-500 text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm "
+                className="bg-primary text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm "
                 style={{
-                  fontFamily: "Creepster",
+                  fontFamily: "montserrat",
                 }}
               >
                 🍬 Submit Candy 🍬

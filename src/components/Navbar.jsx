@@ -25,41 +25,41 @@ const Navbar = ({ onLogout }) => {
     fetchTeamScore();
   }, []);
   return (
-    <div className="">
+    <div className="md:mx-10 ms-2">
       <div className="flex w-full justify-between items-center container mx-auto">
         <div>
           <p
-            className="text-xl mx-20 tracking-wider text-white"
+            className="lg:text-xl text-base  tracking-wider text-white"
             style={{
-              fontFamily: "Creepster",
+              fontFamily: "montserrat",
             }}
           >
             Team Score: {teamScore}
           </p>
         </div>
         <div
-          className="text-6xl my-10 mx-5 text-white tracking-wider font-extrabold"
+          className="sm:text-heading text-heading-sm  text-center my-10 mx-5 text-primary tracking-wider font-extrabold"
           style={{
-            fontFamily: "Creepster",
+            fontFamily: "montserrat",
           }}
         >
-          WELCOME TO GDSC CTF !!!
+          WELCOME TO <span className="text-secondary">GDSC</span> CTF
         </div>
-        <div>
+        <div className="sm:space-x-5 space-y-2">
           <Link
             to="/chart-leaderboard"
-            className="btn m-5 mx-5 btn-primary hover:bg-red-500 text-xl tracking-wider font-thin text-white"
+            className="btn btn-primary sm:text-base text-xs"
             style={{
-              fontFamily: "Creepster",
+              fontFamily: "montserrat",
             }}
           >
             Chart Leaderboard
           </Link>
           <button
             onClick={onLogout}
-            className="btn btn-primary mx-1 hover:bg-red-500 text-xl tracking-wider font-thin text-white"
+            className="btn btn-primary sm:text-base text-xs"
             style={{
-              fontFamily: "Creepster",
+              fontFamily: "montserrat",
             }}
           >
             Logout

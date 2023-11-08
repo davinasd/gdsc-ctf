@@ -41,11 +41,11 @@ function User() {
       <div style={{ position: "relative" }}>
         <div className="p-4 absolute z-20 w-full min-h-screen ">
           <Navbar onLogout={handleLogout} />
-          <div className="flex p-4  max-h-screen">
-            <div className="w-[60%] pr-2">
+          <div className="flex lg:flex-row flex-col lg:p-4 p-2 max-h-screen">
+            <div className="lg:w-[60%] w-screen pr-2">
               <QuestionTable />
             </div>
-            <div className="w-[40%] mr-0 mt-0">
+            <div className="lg:w-[40%] w-screen mr-0 mt-0">
               <LeaderBoard />
             </div>
           </div>
