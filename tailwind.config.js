@@ -7,13 +7,8 @@ export default {
         primary: "#f97316",
         secondary: "#6b21a8",
       },
-      fontSize: {
-        'subheading-sm': '0.8rem',
-        'heading-sm': '1.563rem',
-        'heading': '3.052rem',
-      },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
+        primary: ["Montserrat", "sans-serif"],
       },
     },
   },

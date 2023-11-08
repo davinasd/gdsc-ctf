@@ -88,7 +88,7 @@ const renderPercentageBar = (percentage) => {
     top: "50%",
     transform: "translateY(-50%)",
     left: "50%",
-    color: "#333", // Adjust the text color for better visibility
+    color: "#333",
     fontWeight: "bold",
   };
 
@@ -103,28 +103,28 @@ const renderPercentageBar = (percentage) => {
 
 
   return (
-    <div className="p-4 h-full">
-      <div className="w-full h-fit no-scrollbar">
-        <h2 className="text-3xl tracking-wider font-bold mb-4 text-white mt-2" style={{ fontFamily: "montserrat" }}>
+    <div className=" h-full px-3">
+      <div className="max-w-screen overflow-hidden no-scrollbar">
+        <h2 className="sm:text-3xl text-xl tracking-wider text-center sm:text-left font-bold mb-4 text-white mt-2 font-primary">
           Spooky ScoreCard
         </h2>
-        <div style={{ maxWidth: "600px", overflowY: "scroll", maxHeight: "70vh" }} className="no-scrollbar">
+        <div className="no-scrollbar pb-10">
           <table className="w-full border border-black">
             <thead className="text-gray-950 bg-primary">
               <tr>
-                <th className="px-4 py-3.5 text-left border-black text-l text-gray-950 tracking-wider" style={{ fontFamily: "montserrat" }}>
+                <th className="sm:px-4 px-2 py-3.5 text-center border-black text-sm sm:text-lg text-gray-950 tracking-wider font-primary">
                   Rank
                 </th>
-                <th className="px-4 py-3.5 text-left border-black text-l" style={{ fontFamily: "montserrat" }}>
+                <th className="sm:px-4 px-2 py-3.5 text-center border-black text-sm sm:text-lg font-primary" >
                   Team Name
                 </th>
-                <th className="px-4 py-3.5 text-left border-black text-l break-normal" style={{ fontFamily: "montserrat" }}>
+                <th className="sm:px-4 px-2 py-3.5 text-center border-black text-sm sm:text-lg break-normal font-primary" >
                   Leader USN
                 </th>
-                <th className="px-4 py-3.5 text-l" style={{ fontFamily: "montserrat" }}>
+                <th className="sm:px-4 px-2 py-3.5 text-sm text-center sm:text-lg font-primary">
                   Score
                 </th>
-                <th className="px-4 py-3.5 text-l" style={{ fontFamily: "montserrat" }}>
+                <th className="sm:px-4 px-2 py-3.5 text-sm sm:text-lg text-center font-primary" >
                   Percentage
                 </th>
               </tr>
@@ -136,28 +136,29 @@ const renderPercentageBar = (percentage) => {
                   style={{
                     backgroundColor: fetchedLeaderUsn === team.leaderUsn ? "red" : index % 2 === 0 ? "rgba(255, 255, 255)" : "rgba(255, 165, 0)",
                   }}
+                  
                 >
-                  <td className="px-4 py-3.5 text-center border-black">
-                    <span className="font-bold text-black text-4xl" style={{ fontFamily: "montserrat" }}>
+                  <td className="sm:px-4 px-2 py-3.5 text-center border-black">
+                    <span className="font-bold text-black sm:text-xl text-center  text-sm font-primary" >
                       {index + 1}
                     </span>
                   </td>
-                  <td className="px-4 py-3.5 border-black text-2xl">
-                    <span className="font-bold text-black" style={{ fontFamily: "montserrat" }}>
+                  <td className="sm:px-4 px-2 border-black text-center  sm:text-xl text-sm font-primary">
+                    <span className="font-bold text-black" >
                       {team.teamName}
                     </span>
                   </td>
-                  <td className="px-4 py-3.5 border-black text-1xl">
-                    <span className="font-bold text-black" style={{ fontFamily: "montserrat" }}>
+                  <td className="sm:px-4 px-2 border-black text-center  sm:text-xl text-sm font-primary">
+                    <span className="font-bold text-black">
                       {team.leaderUsn}
                     </span>
                   </td>
-                  <td className="px-4 py-3.5 text-2xl">
-                    <span className="font-bold text-black" style={{ fontFamily: "montserrat" }}>
+                  <td className="sm:px-4 px-2 sm:text-xl text-center text-sm font-primary">
+                    <span className="font-bold text-black">
                       {team.Score}
                     </span>
                   </td>
-                  <td className="px-4 py-3.5 text-l" style={{ fontFamily: "montserrat" }}>
+                  <td className="sm:px-4 px-2 text-xs font-primary">
                     {renderPercentageBar(team.percentageSolved)}
                   </td>
                 </tr>

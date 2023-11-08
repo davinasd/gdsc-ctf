@@ -9,13 +9,11 @@ import bgImg from "../assets/bg-img.json";
 import bgl from "../assets/bg-leaderboard.json";
 import moon from "../assets/moon.json";
 import haloweenrope from "../assets/haloweenrope.json";
-
 import Lottie from "lottie-react";
 
 function User() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleLogout = () => {
     dispatch(authActions.logout());
     navigate("/");
@@ -28,7 +26,7 @@ function User() {
         animationData={bgImg}
         loop={true}
         style={{
-          position: "absolute",
+          position: "fixed",
           top: 0,
           left: 0,
           width: "100%",
@@ -39,10 +37,10 @@ function User() {
         }}
       />
       <div style={{ position: "relative" }}>
-        <div className="p-4 absolute z-20 w-full min-h-screen ">
+        <div className=" absolute z-20 w-full min-h-screen ">
           <Navbar onLogout={handleLogout} />
-          <div className="flex lg:flex-row flex-col lg:p-4 p-2 max-h-screen">
-            <div className="lg:w-[60%] w-screen pr-2">
+          <div className="flex lg:flex-row flex-col max-h-screen">
+            <div className="lg:w-[60%] w-screen ">
               <QuestionTable />
             </div>
             <div className="lg:w-[40%] w-screen mr-0 mt-0">

@@ -25,42 +25,29 @@ const Navbar = ({ onLogout }) => {
     fetchTeamScore();
   }, []);
   return (
-    <div className="md:mx-10 ms-2">
-      <div className="flex w-full justify-between items-center container mx-auto">
+    <div className="md:mx-10 mx-2">
+      <div className="flex  lg:flex-row flex-col w-full justify-between items-center container mx-auto">
+        <div className="sm:text-4xl lg:hidden block text-2xl  text-center md:my-10 my-5 mx-5 text-primary font-primary tracking-wider font-extrabold">
+          WELCOME TO <span className="text-secondary">GDSC</span> CTF
+        </div>
         <div>
-          <p
-            className="lg:text-xl text-base  tracking-wider text-white"
-            style={{
-              fontFamily: "montserrat",
-            }}
-          >
+          <p className="lg:text-xl text-base font-primary  text-white">
             Team Score: {teamScore}
           </p>
         </div>
-        <div
-          className="sm:text-heading text-heading-sm  text-center my-10 mx-5 text-primary tracking-wider font-extrabold"
-          style={{
-            fontFamily: "montserrat",
-          }}
-        >
+        <div className="sm:text-5xl lg:block hidden  text-center my-10 mx-5 font-primary text-primary tracking-wider font-extrabold">
           WELCOME TO <span className="text-secondary">GDSC</span> CTF
         </div>
-        <div className="sm:space-x-5 space-y-2">
+        <div className="  space-y-2">
           <Link
             to="/chart-leaderboard"
-            className="btn btn-primary sm:text-base text-xs"
-            style={{
-              fontFamily: "montserrat",
-            }}
+            className="btn btn-primary mr-5 sm:text-base font-primary text-xs"
           >
             Chart Leaderboard
           </Link>
           <button
             onClick={onLogout}
-            className="btn btn-primary sm:text-base text-xs"
-            style={{
-              fontFamily: "montserrat",
-            }}
+            className="btn btn-primary sm:text-base font-primary text-xs"
           >
             Logout
           </button>

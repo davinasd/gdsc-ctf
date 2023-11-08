@@ -19,10 +19,7 @@ const QuestionCard = ({ question, index, func: openModal }) => {
         setIsHovered(false);
       }}
       key={question._id}
-      className="p-4  border rounded-lg cursor-pointer w-1/3 hover:bg-primary shadow-md bg-gray-950
-text-black
-text-2xl font-semibold leading-tight relative bg-opacity-40
-"
+      className="p-4 border rounded-lg cursor-pointer w-full hover:bg-primary shadow-md bg-gray-950 text-black text-2xl font-semibold leading-tight relative bg-opacity-40"
       onClick={() => openModal(question)}
     >
       {hovered && (
@@ -33,7 +30,7 @@ text-2xl font-semibold leading-tight relative bg-opacity-40
           style={{
             position: "absolute",
             bottom: "-35%",
-            right: "-20%",
+            right: "-12%",
             width: "100px",
             height: "100px",
             zIndex: 35,
@@ -41,26 +38,20 @@ text-2xl font-semibold leading-tight relative bg-opacity-40
         />
       )}
       <p
-        className="font-bold text-primary-700 text-2xl flex gap-3 text-white tracking-widest"
-        style={{
-          fontFamily: "montserrat",
-        }}
+        className="font-bold text-primary-700 md:text-2xl text-xl flex gap-3 text-white tracking-widest font-primary"
+       
       >
-        Question <span>{index + 1}</span>
+        Question <span className="md:text-2xl text-xl">{index + 1}</span>
       </p>
       <h2
-        className="text-xl font-bold mb-2 text-white tracking-wider"
-        style={{
-          fontFamily: "montserrat",
-        }}
+        className="md:text-xl text-base font-bold mb-2  text-white tracking-wider font-primary"
+       
       >
         {question.question}
       </h2>
       <div
-        className="text-purple-700 bg-white py-2 px-3 rounded-full w-fit text-lg tracking-wider border border-white backdrop-blur-lg  bg-white/10 "
-        style={{
-          fontFamily: "montserrat",
-        }}
+        className="text-purple-700 bg-white py-2 px-3 rounded-full w-fit sm:text-lg text-sm font-primary tracking-wider border border-white backdrop-blur-lg  bg-white/10 "
+       
       >
         Points: {question.points}
       </div>
@@ -106,18 +97,14 @@ const QuestionTable = () => {
       if (response.status === 400) {
         const data = await response.json();
         toast.error(data.message, {
-          className: "text-white bg-black",
-          style: {
-            fontFamily: "montserrat",
-          },
+          className: "text-white font-primary bg-black",
+         
         });
       }
     } catch (error) {
       toast.error(error.response.data.message, {
-        className: "text-white bg-black",
-        style: {
-          fontFamily: "montserrat",
-        },
+        className: "text-white font-primary bg-black",
+        
       });
     }
   };
@@ -162,10 +149,8 @@ const QuestionTable = () => {
         "CAN NOT SUBMIT BLANK ANSWER",
 
         {
-          className: "text-white bg-black",
-          style: {
-            fontFamily: "montserrat",
-          },
+          className: "text-white font-primary bg-black",
+          
         }
       );
       closeModal();
@@ -181,10 +166,8 @@ const QuestionTable = () => {
         )
         .then((response) => {
           toast(response.message, {
-            className: "text-white bg-black",
-            style: {
-              fontFamily: "montserrat",
-            },
+            className: "text-white font-primary bg-black",
+            
           });
           closeModal();
 
@@ -192,10 +175,8 @@ const QuestionTable = () => {
         })
         .catch((error) => {
           toast.error(error.response.data.message || "An error occurred", {
-            className: "text-white bg-black",
-            style: {
-              fontFamily: "montserrat",
-            },
+            className: "text-white font-primary bg-black",
+            
           });
 
           closeModal();
@@ -208,15 +189,13 @@ const QuestionTable = () => {
     <div className="container mx-auto p-4  text-white">
       <ToastContainer></ToastContainer>
       <h1
-        className="text-4xl font-bold mb-4 text-white  tracking-wider"
-        style={{
-          fontFamily: "montserrat",
-        }}
+        className="text-3xl font-bold mb-6 font-primary text-white  tracking-wider"
+        
       >
         Quests
       </h1>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
         {questions.map((question, index) => (
           <QuestionCard
             question={question}
@@ -233,7 +212,7 @@ const QuestionTable = () => {
           onClick={closeModal}
         >
           <div
-            className="bg-secondary py-2 w-3/4 px-4 rounded-lg shadow-lg relative z-50"
+            className="bg-secondary py-2 w-6/7 px-4 rounded-lg shadow-lg relative z-50 h-screen sm:h-full no-scrollbar overflow-scroll sm:overflow-auto "
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -246,25 +225,21 @@ const QuestionTable = () => {
             <div className="flex justify-between w-full mt-6">
               <div>
                 <h2
-                  className="text-3xl font-bold mb-2 tracking-wider"
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="sm:text-3xl text-xl  font-primary font-bold mb-2 tracking-wider"
+               
                 >
                   {selectedQuestion.question}
                 </h2>
                 <div className="flex gap-3 items-center">
                   <div
-                    className="text-3xl"
-                    style={{
-                      fontFamily: "montserrat",
-                    }}
+                    className="sm:text-3xl  font-primary text-xl"
+                    
                   >
                     Tag :
                   </div>
                   <div
-                    className={`bg-primary px-2 border text-sm border-white py-1 text-white rounded-full `}
-                    style={{ width: "auto", display: "inline-block" }}
+                    className={`bg-primary px-2 border text-sm border-white py-1 font-primary text-white rounded-full `}
+                   
                   >
                     {selectedQuestion.type}
                   </div>
@@ -272,35 +247,29 @@ const QuestionTable = () => {
               </div>
               <div className="text-white-600 text-xl font-bold flex gap-3">
                 <div
-                  className="text-3xl "
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="sm:text-3xl font-primary text-xl"
+                  
                 >
                   Points:
                 </div>{" "}
                 <div
-                  className="text-3xl"
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="sm:text-3xl font-primary text-xl"
+                  
                 >
                   {selectedQuestion.points}
                 </div>{" "}
               </div>
             </div>
 
-            <div className="mb-2  flex pb-10 pt-5">
+            <div className="mb-2  flex sm:flex-row flex-col pb-10 pt-5">
               <div
-                className="mb-2 flex flex-col w-1/2 "
-                style={{ borderRight: "1px solid #000" }}
+                className="mb-2 flex flex-col sm:w-1/2 sm:border-r border-b pb-10 sm:border-b-transparent"
+                
               >
                 <div className="mb-2">
                   <div
-                    className="text-3xl"
-                    style={{
-                      fontFamily: "montserrat",
-                    }}
+                    className="sm:text-3xl font-primary text-xl"
+                    
                   >
                     CATCH PHRASE :
                   </div>{" "}
@@ -308,20 +277,16 @@ const QuestionTable = () => {
                 </div>
                 <div className="pr-2">
                   <div
-                    className="text-3xl"
-                    style={{
-                      fontFamily: "montserrat",
-                    }}
+                    className="sm:text-3xl  font-primary text-xl"
+                    
                   >
                     DESCRIPTION :
                   </div>{" "}
                   <ReactMarkdown>{selectedQuestion.description}</ReactMarkdown>
                 </div>
                 <div
-                  className="text-3xl"
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="sm:text-3xl font-primary text-xl"
+                
                 >
                   LINK :
                 </div>{" "}
@@ -332,21 +297,17 @@ const QuestionTable = () => {
                   {selectedQuestion.link}
                 </a>
               </div>
-              <div className="w-1/2 mx-4" style={{ textAlign: "center" }}>
+              <div className="sm:w-1/2 mx-4 pt-1" style={{ textAlign: "center" }}>
                 <div
-                  className="text-center text-primary text-4xl"
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="text-center font-primary  text-primary sm:text-4xl text-2xl"
+                 
                 >
                   🎃 Hints 🎃
                 </div>
                 <br />
                 <strong
-                  className="text-center text-primary text-4xl"
-                  style={{
-                    fontFamily: "montserrat",
-                  }}
+                  className="text-center font-primary text-primary sm:text-4xl text-2xl"
+                  
                 >
                   (PUMPKINS WILL ONLY BE SHOWN ONCE)
                 </strong>
@@ -356,37 +317,31 @@ const QuestionTable = () => {
                     style={{ maxHeight: "300px", overflowY: "auto" }}
                   >
                     <div className="space-y-4">
-                      <div className="bg-secondary mr-2 ml-2 p-2">
+                      <div className="bg-secondary  font-primary mr-2 ml-2 p-2">
                         <button
                           onClick={() => fetchHint(1)}
                           className="btn"
-                          style={{
-                            fontFamily: "montserrat",
-                          }}
+                          
                         >
                           🎃 -5 points
                         </button>
                         <div className="text-primary">{hint1}</div>
                       </div>
-                      <div className="bg-secondary mr-2 ml-2 p-2">
+                      <div className="bg-secondary mr-2  font-primary ml-2 p-2">
                         <button
                           onClick={() => fetchHint(2)}
                           className="btn"
-                          style={{
-                            fontFamily: "montserrat",
-                          }}
+                         
                         >
                           🎃 🎃 -7 points
                         </button>
                         <div className="text-primary">{hint2}</div>
                       </div>
-                      <div className="bg-secondary mr-2 ml-2 p-2">
+                      <div className="bg-secondary  font-primary mr-2 ml-2 p-2">
                         <button
                           onClick={() => fetchHint(3)}
                           className="btn"
-                          style={{
-                            fontFamily: "montserrat",
-                          }}
+                          
                         >
                           🎃 🎃 🎃 -10 points
                         </button>
@@ -399,10 +354,8 @@ const QuestionTable = () => {
             </div>
 
             <div
-              className="flex items-center flex-row mb-4"
-              style={{
-                fontFamily: "montserrat",
-              }}
+              className="flex sm:flex-row flex-col  items-center  font-primary mb-4"
+             
             >
               <input
                 type="text"
@@ -410,14 +363,12 @@ const QuestionTable = () => {
                 placeholder=" Enter Your 🍬 Candy Here"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                className="border rounded p-2 w-full mr-2 bg-black text-primary"
+                className="border rounded p-2 w-full mr-2 mb-4 sm:mb-0 bg-black text-primary font-primary"
               />
               <button
                 onClick={submitAnswer}
-                className="bg-primary text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm "
-                style={{
-                  fontFamily: "montserrat",
-                }}
+                className="bg-primary text-black w-60 h-18 py-3 rounded-full hover:bg-orange-700 text-sm  font-primary"
+               
               >
                 🍬 Submit Candy 🍬
               </button>
