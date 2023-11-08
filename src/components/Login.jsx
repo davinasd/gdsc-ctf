@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
+
+  const [loginError, setLoginError] = useState(null);
   const [formData, setFormData] = useState({
     emailAddress: "",
     password: "",
   });
-  const [loginError, setLoginError] = useState(null);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

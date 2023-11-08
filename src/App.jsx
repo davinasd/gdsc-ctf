@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Registration from "./components/Registration";
 import ChartLeaderBoard from "./components/ChartLeaderBoard";
-import Login from "./components/Login";
+import Term from "./components/login/termLogin";
 import User from "./components/User";
 import Hint from "./components/Hint";
 
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Term />} />
       <Route
         path="/user"
         element={isLoggedIn ? <User /> : <Navigate to="/" />}
