@@ -25,42 +25,29 @@ const Navbar = ({ onLogout }) => {
     fetchTeamScore();
   }, []);
   return (
-    <div className="">
-      <div className="flex w-full justify-between items-center container mx-auto">
+    <div className="md:mx-10 mx-2">
+      <div className="flex  lg:flex-row flex-col w-full justify-between items-center container mx-auto">
+        <div className="sm:text-4xl lg:hidden block text-2xl  text-center md:my-10 my-5 mx-5 text-primary font-primary tracking-wider font-extrabold">
+          WELCOME TO <span className="text-secondary">GDSC</span> CTF
+        </div>
         <div>
-          <p
-            className="text-xl mx-20 tracking-wider text-white"
-            style={{
-              fontFamily: "Creepster",
-            }}
-          >
+          <p className="lg:text-xl text-base font-primary  text-white">
             Team Score: {teamScore}
           </p>
         </div>
-        <div
-          className="text-6xl my-10 mx-5 text-white tracking-wider font-extrabold"
-          style={{
-            fontFamily: "Creepster",
-          }}
-        >
-          WELCOME TO GDSC CTF !!!
+        <div className="sm:text-5xl lg:block hidden  text-center my-10 mx-5 font-primary text-primary tracking-wider font-extrabold">
+          WELCOME TO <span className="text-secondary">GDSC</span> CTF
         </div>
-        <div>
+        <div className="  space-y-2">
           <Link
             to="/chart-leaderboard"
-            className="btn m-5 mx-5 btn-primary hover:bg-red-500 text-xl tracking-wider font-thin text-white"
-            style={{
-              fontFamily: "Creepster",
-            }}
+            className="btn btn-primary mr-5 sm:text-base font-primary text-xs"
           >
             Chart Leaderboard
           </Link>
           <button
             onClick={onLogout}
-            className="btn btn-primary mx-1 hover:bg-red-500 text-xl tracking-wider font-thin text-white"
-            style={{
-              fontFamily: "Creepster",
-            }}
+            className="btn btn-primary sm:text-base font-primary text-xs"
           >
             Logout
           </button>
