@@ -81,6 +81,8 @@ const Terminal = () => {
         });
   
         if (!response.ok) {
+          const data = await response.json();
+          alert(data.message)
           throw new Error(`HTTP error! status: ${response.status}`);
         }
   
